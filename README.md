@@ -9,7 +9,7 @@
 <h3 align="center">
 	<a href="#about">[About]</a>
 	<span> · </span>
-	<a href="#key-features">[Key Features]</a>
+	<a href="#index">[Index]</a>
 	<span> · </span>
 	<a href="#gallery">[Gallery]</a>
 	<span> · </span>
