@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 16:12:25 by mpitot            #+#    #+#              #
-#    Updated: 2024/05/18 12:16:42 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/05/18 12:48:01 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJ_D	=	.objs/
 
 HEAD	=	includes/
 
-NAME	=	minishell
+NAME	=	cub3D
 
 CC		=	cc
 
@@ -29,7 +29,7 @@ FLAGS	=	-Wall -Wextra -Werror -g3
 
 all		:	libft .internal_separate2 ${NAME}
 
-${OBJS}	:	${OBJ_D}%.o: ${SRC_D}%.c Makefile includes/minishell.h includes/colors.h
+${OBJS}	:	${OBJ_D}%.o: ${SRC_D}%.c Makefile includes/cub3D.h
 	@$(call print_progress,$<)
 	@${CC} ${FLAGS} -I${HEAD} -c $< -o $@
 	@$(call update_progress,$<)

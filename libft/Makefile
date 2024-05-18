@@ -6,14 +6,13 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 14:24:49 by mpitot            #+#    #+#              #
-#    Updated: 2024/03/13 18:01:09 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/05/18 12:42:56 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	ft_atoi.c			\
 			ft_bzero.c			\
 			ft_calloc.c			\
-			ft_free_pac.c		\
 			ft_isalnum.c		\
 			ft_isalpha.c		\
 			ft_isascii.c		\

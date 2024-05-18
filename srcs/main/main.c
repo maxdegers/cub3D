@@ -6,11 +6,11 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:16:54 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/18 12:19:43 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:47:24 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3D.h"
+#include "cub3D.h"
 
 int	main(int argc, char const *argv[])
 {

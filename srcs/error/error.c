@@ -6,8 +6,8 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:23:46 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/18 12:23:59 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:48:10 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3D.h"
+#include "cub3D.h"
