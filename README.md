@@ -1,13 +1,13 @@
 # Cube3D Project
 
-![Cube3D Screenshot](https://i.imgur.com/o6p3z7t.png)
+![Cube3D Screenshot (ADD PHOTO)]()
 
 **Welcome to the Cube3D Project, a venture into creating 3D game environments with raycasting technology, reminiscent of classic first-person shooters.**
 
 ## Table of Contents
 
 <h3 align="center">
-	<a href="#overview">[Overview]</a>
+	<a href="#about">[About]</a>
 	<span> · </span>
 	<a href="#key-features">[Key Features]</a>
 	<span> · </span>
@@ -18,24 +18,48 @@
 	<a href="#controls">[Controls]</a>
     <span> · </span>
 	<a href="#resources">[Resources]</a>
-    <span> · </span>
+</h3>
+
+<h3 align="center">
 	<a href="#authors">[Authors]</a>
 </h3>
 
-## Overview
+## About
 
 Cube3D, a part of the 42 school's challenging curriculum, requires students to craft a basic yet functional 3D game engine. This engine uses the C language and MiniLibX library to simulate a player navigating through a maze, employing a raycasting algorithm to render a pseudo-3D perspective.
 
-## Key Features
+## Index
 
-- Movement through a detailed maze environment textured to enhance depth perception.
-- Camera controls that allow the player to look around in real-time.
-- A dynamic heads-up display (HUD) that provides essential gameplay information such as current coordinates, view direction, and frame rate.
-- Implementation of sprites within the game world to create a more immersive experience.
+### Project Objectives
+
+The primary goals of the Cube3D project are:
+- Develop a basic 3D game engine using C and MiniLibX.
+- Implement raycasting technology to render a 3D maze from a first-person perspective.
+- Create a user interface that includes real-time movements and camera adjustments.
+- Equip the engine with basic game functionalities like texture mapping, sprite handling, and collision detection.
+
+### Implemented Features
+
+The current version of Cube3D boasts the following functionalities:
+- Real-time navigation through a textured 3D maze.
+- Ability to look around the maze using mouse or keyboard controls.
+- Textured walls and sprite rendering to enhance the visual depth of the maze.
+- Heads-Up Display (HUD) showing player stats including direction and current FPS.
+- Responsive controls for movement and viewpoint adjustment.
+
+### Non-Implemented Features
+
+While Cube3D achieves many of its foundational goals, there are several features yet to be implemented:
+- Network multiplayer functionality.
+- Complex enemy AI behaviors.
+- Advanced lighting and shadow effects.
+- Support for loading multiple and larger map configurations.
+- Additional optimization for higher frame rates on standard hardware.
+
 
 ## Gallery
 
-![Cube3D Game View](https://i.imgur.com/o6p3z7t.png)
+![Cube3D Game View (ADD A PHOTO)]()
 
 ## Getting Started
 
@@ -78,7 +102,4 @@ $ make leak
 - [Lode Graphics Tutorial](https://lodev.org/cgtutor/raycasting.html)
 - [Wolf Explications](https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/)
 
-## Authors
-
-- [Arthur Ascedu](https://github.com/aascedu)
-- [Thea Wang](https://github.com/Zwhea)
+by [gberthol](https://github.com/Pastequeisntreal) & [mbrousse](https://github.com/maxdegers).
