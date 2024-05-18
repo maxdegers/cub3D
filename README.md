@@ -15,11 +15,11 @@
 	<span> · </span>
 	<a href="#getting-started">[Getting Started]</a>
     <span> · </span>
-	<a href="#gameplay-controls">[Gameplay Controls]</a>
+	<a href="#controls">[Controls]</a>
     <span> · </span>
-	<a href="#reference-materials">[Reference Materials]</a>
+	<a href="#resources">[Resources]</a>
     <span> · </span>
-	<a href="#contributors">[Contributors]</a>
+	<a href="#authors">[Authors]</a>
 </h3>
 
 ## Overview
