@@ -13,15 +13,11 @@
 	<span> · </span>
 	<a href="#gallery">[Gallery]</a>
 	<span> · </span>
-	<a href="#getting-started">[Getting Started]</a>
+    <a href="#usage">[Usage]</a>
     <span> · </span>
 	<a href="#controls">[Controls]</a>
     <span> · </span>
 	<a href="#resources">[Resources]</a>
-</h3>
-
-<h3 align="center">
-	<a href="#authors">[Authors]</a>
 </h3>
 
 ## About
@@ -61,7 +57,7 @@ While Cube3D achieves many of its foundational goals, there are several features
 
 ![Cube3D Game View (ADD A PHOTO)]()
 
-## Getting Started
+## Usage
 
 ### Instructions for Running the Game
 
