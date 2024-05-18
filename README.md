@@ -69,7 +69,7 @@ To get started, compile and run the game using:
 make all
 ./cube3D your_map.cub
 ```
-Replace `map.cub` with the path to your custom map file. The map file defines the layout of the 3D environment, including the textures, sprite positions, and player starting position.
+Replace `your_map.cub` with the path to your custom map file. The map file defines the layout of the 3D environment, including the textures, sprite positions, and player starting position.
 
 **2. Special Compiling Rules**
 
