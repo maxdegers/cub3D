@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 12:23:46 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/23 14:59:33 by mbrousse         ###   ########.fr       */
+/*   Created: 2024/05/23 14:48:34 by mbrousse          #+#    #+#             */
+/*   Updated: 2024/05/23 17:38:51 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_puterror(char *message)
+int	parse_map(char *path, t_data *data)
 {
-	ft_printf_fd(2, "%s", message);
-}
+	int	fd;
 
-void	ft_perror(void)
-{
-	perror("Error\n");
-	exit(EXIT_FAILURE);
-}
-
-void	free_all(t_data *data)
-{
-	if (data->map)
-		ft_free_map(data->map);
-	// if (data->mlx)
-	// 	free_mlx(data->mlx);
-}
-
-void	exit_error(char *message, t_data *data)
-{
-	ft_puterror(message);
-	free_all(data);
-	exit(1);
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		exit_error("Error\nCan't open the file\n", data);
+	close(fd);
+	ft_setup(data);
+	// ft_check_file(path, data);
+	return (0);
 }

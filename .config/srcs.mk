@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 12:18:49 by mbrousse          #+#    #+#              #
-#    Updated: 2024/05/23 10:52:42 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/05/23 15:00:49 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,14 @@ MAIN	=	$(addprefix $(DIR_MAIN), $(SRC_MAIN))
 
 DIR_ERROR	=	error/
 
-SRC_ERROR	=	error.c
+SRC_ERROR	=	error.c\
+				free.c
 ERROR	=	$(addprefix $(DIR_ERROR), $(SRC_ERROR))
 
 DIR_PARSING	=	parsing/
 
-SRC_PARSING	=
+SRC_PARSING	=	parse_map.c\
+				setup.c
 
 PARSING	=	$(addprefix $(DIR_PARSING), $(SRC_PARSING))
 

@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 12:23:46 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/23 14:59:33 by mbrousse         ###   ########.fr       */
+/*   Created: 2024/05/23 14:52:17 by mbrousse          #+#    #+#             */
+/*   Updated: 2024/05/23 15:01:28 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_puterror(char *message)
+void	setup_map(t_map *map)
 {
-	ft_printf_fd(2, "%s", message);
+	map->no = NULL;
+	map->so = NULL;
+	map->we = NULL;
+	map->ea = NULL;
+	map->map = NULL;
+	map->player_x = 0;
+	map->player_y = 0;
+	map->player_dir = 0;
+	map->f.r = 0;
+	map->f.g = 0;
+	map->f.b = 0;
+	map->c.r = 0;
+	map->c.g = 0;
+	map->c.b = 0;
+	map->width = 0;
+	map->height = 0;
+	map->map = NULL;
 }
 
-void	ft_perror(void)
+void	ft_setup(t_data *data)
 {
-	perror("Error\n");
-	exit(EXIT_FAILURE);
-}
-
-void	free_all(t_data *data)
-{
-	if (data->map)
-		ft_free_map(data->map);
-	// if (data->mlx)
-	// 	free_mlx(data->mlx);
-}
-
-void	exit_error(char *message, t_data *data)
-{
-	ft_puterror(message);
-	free_all(data);
-	exit(1);
+	setup_map(data->map);
 }
