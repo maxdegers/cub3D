@@ -6,8 +6,13 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:23:46 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/18 12:48:10 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:33:09 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	ft_puterror(char *message)
+{
+	ft_printf_fd(2, "%s", message);
+}
