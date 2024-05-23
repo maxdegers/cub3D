@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/23 14:58:25 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:43:05 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 # include "../libft/incs/libft.h"
 # include "../mlx_linux/mlx.h"
 
-# define ERROR_ARG "   Error:\nTry : ./cube3D map.cub\n"
+# define ERROR_ARG "   Error:\nTry : ./cube3D <map.cub>\n"
+# define ERROR_FILE "   Error:\nFile not found\n"
+# define ERROR_FILE_EXT "   Error:\nFile extension not valid\n" 
+# define ERROR_FILE_NAME "   Error:\nFile name not valid\n" 
+# define ERROR_FILE_OPEN "   Error:\nFile can't be opened\n"
 /*****************************************************************************/
 /*                                   DIR                                     */
 /*****************************************************************************/
@@ -40,20 +44,24 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
+typedef struct s_vector
+{
+	double	x;
+	double	y;
+}	t_vector;
+
 typedef struct s_map
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	size_t	player_x;
-	size_t	player_y;
-	int		player_dir;
-	t_color	f;
-	t_color	c;
-	int		width;
-	int		height;
-	char	**map;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	t_vector	player;
+	int			player_dir;
+	t_color		f;
+	t_color		c;
+	t_vector	window;
+	char		**map;
 }	t_map;
 
 typedef struct s_mlx
@@ -89,7 +97,9 @@ void	ft_free_map(t_map *map);
 //	parse_map.c
 int		parse_map(char *path, t_data *data);
 //	setup.c
-void	ft_setup(t_data *data);
+void	ft_setup_map(t_data *data);
+//	check_file.c
+int		ft_check_file(char *path, t_data *data);
 /*****************************************************************************/
 /*                                   UTILS                                   */
 /*****************************************************************************/
