@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup.c                                            :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 14:52:17 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 12:22:56 by mbrousse         ###   ########.fr       */
+/*   Created: 2024/05/24 11:24:25 by mbrousse          #+#    #+#             */
+/*   Updated: 2024/05/24 11:25:43 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	setup_map(t_map *map)
+void	mlx_destroyer(t_mlx *g)
 {
-	map->no = NULL;
-	map->so = NULL;
-	map->we = NULL;
-	map->ea = NULL;
-	map->map = NULL;
-	map->player_dir = 0;
-	map->f.r = 0;
-	map->f.g = 0;
-	map->f.b = 0;
-	map->c.r = 0;
-	map->c.g = 0;
-	map->c.b = 0;
-	map->map = NULL;
-	map->player.x = 0;
-	map->player.y = 0;
-	map->window.x = WIDTH;
-	map->window.y = HEIGHT;
+	mlx_destroy_window(g->mlx, g->win);
+	mlx_destroy_display(g->mlx);
+	free(g->mlx);
 }
 
-void	ft_setup_map(t_data *data)
+int	close_window(t_mlx *g)
 {
-	setup_map(data->map);
+	mlx_loop_end(g->mlx);
+	return (0);
 }
