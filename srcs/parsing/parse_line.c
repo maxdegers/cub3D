@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:32:27 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 12:55:43 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:30:36 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	parse_line(char *line, t_data *data)
 {
-    
+	(void)data;
+	(void)line;
 }

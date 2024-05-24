@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 13:15:54 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:28:40 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,9 @@ void	ft_parse_line(char *line, t_data *data);
 //	check_data.c
 int		check_data(t_data *data);
 int		is_map(char *line);
+// read_file.c
+char	*get_file(char *path);
+
 /*****************************************************************************/
 /*                                   UTILS                                   */
 /*****************************************************************************/

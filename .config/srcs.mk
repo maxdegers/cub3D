@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 12:18:49 by mbrousse          #+#    #+#              #
-#    Updated: 2024/05/24 11:41:51 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/05/24 13:29:54 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,12 @@ ERROR	=	$(addprefix $(DIR_ERROR), $(SRC_ERROR))
 DIR_PARSING	=	parsing/
 
 SRC_PARSING	=	parse_map.c	\
+				parse_line.c\
+				check_file.c\
+				check_data.c\
 				setup.c		\
-				check_file.c
+				read_file.c
+				
 
 PARSING	=	$(addprefix $(DIR_PARSING), $(SRC_PARSING))
 
