@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 12:53:26 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:15:54 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define ERROR_C_COLOR "   Error:\nNO color for Ceiling\n"
 # define ERROR_F_COLOR "   Error:\nNO color for Floor\n"
 # define ERROR_MAP_CHAR "   Error:\nMap contains invalid characters\n"
+# define ERROR_MAP_NL "   Error:\nMap contains empty lines\n"
 /*****************************************************************************/
 /*                                   DIR                                     */
 /*****************************************************************************/
@@ -116,6 +117,7 @@ int		ft_check_file(char *path, t_data *data);
 void	ft_parse_line(char *line, t_data *data);
 //	check_data.c
 int		check_data(t_data *data);
+int		is_map(char *line);
 /*****************************************************************************/
 /*                                   UTILS                                   */
 /*****************************************************************************/
