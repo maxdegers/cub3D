@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    display.mk                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpitot <mpitot@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/01 12:21:59 by mpitot            #+#    #+#              #
-#    Updated: 2024/05/11 17:01:16 by mpitot           ###   ########.fr        #
+#    Created: 2024/05/01 12:21:59 by mbrousse            #+#    #+#              #
+#    Updated: 2024/05/18 12:37:23 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

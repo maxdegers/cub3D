@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 13:27:53 by mpitot            #+#    #+#             */
-/*   Updated: 2024/04/30 11:08:36 by mbrousse         ###   ########.fr       */
+/*   Created: 2023/11/07 13:27:53 by mbrousse          #+#    #+#             */
+/*   Updated: 2024/05/23 10:49:43 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,5 @@ int		ft_putmem_fd(void *ptr, int fd);
 
 /*get_next_line*/
 char	*get_next_line(int fd);
-
-/*ft_free_pac*/
-void	ft_free_pac(size_t count, ...);
 
 #endif

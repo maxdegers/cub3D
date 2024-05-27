@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_pac.c                                      :+:      :+:    :+:   */
+/*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 15:24:28 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/03/28 15:27:58 by mbrousse         ###   ########.fr       */
+/*   Created: 2024/05/24 12:32:27 by mbrousse          #+#    #+#             */
+/*   Updated: 2024/05/24 13:30:36 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "cub3D.h"
 
-void	ft_free_pac(size_t count, ...)
+void	parse_line(char *line, t_data *data)
 {
-	va_list	args;
-	size_t	i;
-
-	va_start(args, count);
-	i = 0;
-	while (i < count)
-	{
-		free(va_arg(args, void *));
-		i++;
-	}
-	va_end(args);
+	(void)data;
+	(void)line;
 }

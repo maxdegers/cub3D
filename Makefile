@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/06 16:12:25 by mpitot            #+#    #+#              #
-#    Updated: 2024/05/18 12:16:42 by mbrousse         ###   ########.fr        #
+#    Created: 2024/03/06 16:12:25 by mbrousse            #+#    #+#              #
+#    Updated: 2024/05/18 12:48:01 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,22 +21,22 @@ OBJ_D	=	.objs/
 
 HEAD	=	includes/
 
-NAME	=	minishell
+NAME	=	cub3D
 
 CC		=	cc
 
 FLAGS	=	-Wall -Wextra -Werror -g3
 
-all		:	libft .internal_separate2 ${NAME}
+all		:	mlx	libft .internal_separate2 ${NAME}
 
-${OBJS}	:	${OBJ_D}%.o: ${SRC_D}%.c Makefile includes/minishell.h includes/colors.h
+${OBJS}	:	${OBJ_D}%.o: ${SRC_D}%.c Makefile includes/cub3D.h
 	@$(call print_progress,$<)
-	@${CC} ${FLAGS} -I${HEAD} -c $< -o $@
+	@${CC} ${FLAGS} -I${HEAD} -Imlx_linux -O3 -c $< -o $@
 	@$(call update_progress,$<)
 
 ${NAME}	:	${OBJ_D} ${OBJS} libft/libft.a
 	@$(call print_progress,$(NAME))
-	@${CC} ${FLAGS} ${OBJS} -L./libft -lft -I${HEAD} -o ${NAME} -lm ${READLINE_LIB}
+	@${CC} ${FLAGS} ${OBJS} -L./libft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lz -lft -I${HEAD} -o ${NAME} -lm ${READLINE_LIB}
 	@$(eval CHANGED=1)
 	@$(call erase)
 	@$(call done_and_dusted,$(NAME))
@@ -48,6 +48,9 @@ ${OBJ_D}:
 	@mkdir -p ${OBJ_D}parsing
 	@mkdir -p ${OBJ_D}utils
 
+mlx		:
+	@make --no-print-directory -C mlx_linux
+
 libft	:
 	@make --no-print-directory -C ./libft
 
@@ -55,15 +58,21 @@ clean	:
 	@echo "Cleaning $(WHITE)[$(RED)libft$(WHITE)]...$(DEFAULT)"
 	@make --no-print-directory -C ./libft clean
 	@$(call separator)
+	@echo "Cleaning $(WHITE)[$(RED)mlx$(WHITE)]...$(DEFAULT)"
+	@make --no-print-directory clean -C mlx_linux
+	@$(call separator)
 	@echo "Cleaning $(WHITE)[$(RED)$(NAME)$(WHITE)]...$(DEFAULT)"
 	@rm -rf ${OBJ_D}
 	@echo "$(WHITE)[$(RED)$(OBJ_D)$(WHITE)] $(RED)deleted.$(DEFAULT)"
 
 fclean	:
-	@echo "F***ing-Cleaning $(WHITE)[$(RED)libft$(WHITE)]...$(DEFAULT)"
+	@echo "Cleaning $(WHITE)[$(RED)libft$(WHITE)]...$(DEFAULT)"
 	@make --no-print-directory -C ./libft fclean
 	@$(call separator)
-	@echo "F***ing-Cleaning $(WHITE)[$(RED)$(NAME)$(WHITE)]...$(DEFAULT)"
+	@echo "Cleaning $(WHITE)[$(RED)mlx$(WHITE)]...$(DEFAULT)"
+	@make --no-print-directory clean -C mlx_linux
+	@$(call separator)
+	@echo "Cleaning $(WHITE)[$(RED)$(NAME)$(WHITE)]...$(DEFAULT)"
 	@rm -rf ${OBJ_D}
 	@echo "$(WHITE)[$(RED)$(OBJ_D)$(WHITE)] $(RED)deleted.$(DEFAULT)"
 	@rm -f ${NAME}
