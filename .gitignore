@@ -1,0 +1,11 @@
+.idea
+.vscode
+cub3D
+.a
+.objs/
+libft/.objs/
+mlx_linux/obj/
+mlx_linux/libmlx.a
+mlx_linux/libmlx_Linux.a
+libft/libft.a
+mlx_linux/test/main.o
