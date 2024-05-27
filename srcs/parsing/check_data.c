@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:35:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 13:26:03 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:00:18 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ int	is_map(char *line)
 	while (line[i])
 	{
 		if (line[i] != ' ' && line[i] != '1' && line[i] != '0' && line[i] != 'N'
-			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
+			&& line[i] != 'S' && line[i] != 'E'
+			&& line[i] != 'W')
 			return (1);
 		i++;
 	}
+	if (ft_strcmp(line, "") == 0)
+		return (1);
 	return (0);
 }
 

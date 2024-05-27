@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 12:18:49 by mbrousse          #+#    #+#              #
-#    Updated: 2024/05/24 13:29:54 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/05/27 21:53:27 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ PARSING	=	$(addprefix $(DIR_PARSING), $(SRC_PARSING))
 
 DIR_UTILS	=	utils/
 
-SRC_UTILS	=	mlx_utils.c
+SRC_UTILS	=	mlx_utils.c		  \
+				parse_line_utils.c\
 
 UTILS	=	$(addprefix $(DIR_UTILS), $(SRC_UTILS))
