@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:35:20 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/27 22:00:19 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:37:32 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	ft_add_to_map(char *line, t_data *data)
 	if (!data->map->map)
 		exit_error(ERROR_MALLOC, data);
 	i = 0;
-	while (tmp && tmp[i])
+	while (tmp != NULL && *tmp != NULL && tmp[i])
 	{
-		data->map->map[i] = tmp[i];
+		data->map->map[i] = ft_strdup(tmp[i]);
 		i++;
 	}
 	data->map->map[i] = ft_strdup(line);

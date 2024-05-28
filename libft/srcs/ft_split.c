@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:09:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/23 10:49:43 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:35:46 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_free_tab(char **tab)
 	size_t	i;
 
 	i = 0;
+	if (!tab)
+		return ;
 	while (tab[i])
 	{
 		free(tab[i]);
