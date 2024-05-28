@@ -6,11 +6,12 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:09:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 13:35:46 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:07:38 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
+#include <stdio.h>
 
 void	ft_free_tab(char **tab)
 {

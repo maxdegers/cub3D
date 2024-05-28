@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:16:54 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 20:55:41 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:09:41 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	main(int argc, char *argv[])
 		return (free_all(&data), EXIT_FAILURE);
 	ft_init_mlx(&data);
 	main_loop(&data, &mlx);
+	free_all(&data);
 	return (EXIT_SUCCESS);
 }
