@@ -6,14 +6,12 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 14:50:45 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:00:46 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
-
 
 # include "../mlx_linux/mlx_int.h"
 # include "../libft/incs/libft.h"
@@ -37,6 +35,7 @@
 # define ERROR_MAP_CHAR "   Error:\nMap contains invalid characters\n"
 # define ERROR_MAP_NL "   Error:\nMap contains empty lines\n"
 # define ERROR_MAP_IS_NOT_LAST "   Error:\nMap is not the last element\n"
+# define ERROR_MAP_BORDER "   Error:\nMap is not surrounded by walls\n"
 /*****************************************************************************/
 /*                                   DIR                                     */
 /*****************************************************************************/
@@ -59,6 +58,7 @@ typedef struct s_color
 	int	r;
 	int	g;
 	int	b;
+	int	rgb;
 }	t_color;
 
 typedef struct s_vector
@@ -135,6 +135,9 @@ int		close_window(t_mlx *g);
 //	parse_line_utils.c
 int		ft_tablen(char **tab);
 void	ft_add_to_map(char *line, t_data *data);
+// check_map_utils.c
+int		check_position(char **map, size_t i, size_t j);
+int		check_border(char **map, size_t i, size_t j);
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/

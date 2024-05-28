@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:32:27 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 14:50:48 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:51:30 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,21 @@ static void	ft_add_color(t_color *color, int value)
 static void	parse_color(char **split, t_data *data, int dir)
 {
 	t_color	color;
-	int		i;
-	int		start;
-	char	c;
+	char	**split2;
 
 	color.r = -1;
 	color.g = -1;
 	color.b = -1;
-	i = 0;
-	while (split[1][i])
-	{
-		start = i;
-		while (split[1][i] && ft_isdigit(split[1][i]) == 0)
-			i++;
-		c = split[1][i];
-		split[1][i] = '\0';
-		ft_add_color(&color, ft_atoi(split[1] + start));
-		split[1][i] = c;
-		if (split[1][i] != '\0')
-			i++;
-	}
+	split2 = ft_split(split[1], ',');
+	if (!split2)
+		return (ft_free_tab(split), exit_error(ERROR_MALLOC, data));
+	if (ft_tablen(split2) != 3)
+		return (ft_free_tab(split), ft_free_tab(split2),
+			exit_error(ERROR_MAP_CHAR, data));
+	ft_add_color(&color, ft_atoi(split2[0]));
+	ft_add_color(&color, ft_atoi(split2[1]));
+	ft_add_color(&color, ft_atoi(split2[2]));
+	ft_free_tab(split2);
 	if (dir == FLOOR)
 		data->map->f = color;
 	else if (dir == CEILING)

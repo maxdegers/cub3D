@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:35:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/27 21:00:18 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:00:25 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,39 @@ int	is_map(char *line)
 	return (0);
 }
 
+static int	ft_check_map_borders(char **map)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (map[i] != NULL)
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (check_border(map, i, j) == 1)
+				return (1);
+			if (map[i][j] == '0' || map[i][j] == 'W' || map[i][j] == 'E'
+				|| map[i][j] == 'S' || map[i][j] == 'N')
+			{
+				if (check_position(map, i, j) == 1)
+					return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 static int	check_map(t_data *data)
 {
 	size_t	i;
 
 	i = 0;
+	if (ft_check_map_borders(data->map->map) == 1)
+		return (ft_puterror(ERROR_MAP_BORDER), 1);
 	while (data->map->map[i] != NULL)
 	{
 		if (is_map(data->map->map[i]) == 1)
