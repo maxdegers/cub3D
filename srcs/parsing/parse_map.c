@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:48:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 14:55:26 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:50:05 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ void	ft_parse_file(char *path, t_data *data)
 	file = get_file(path);
 	ft_nl_chec(file, data);
 	lines = ft_split(file, '\n');
+	free(file);
 	if (!lines)
 		exit_error(ERROR_MALLOC, data);
 	i = 0;
 	while (lines[i])
 	{
-		ft_parse_line(lines[i], data);
+		ft_parse_line(lines[i], data, lines);
 		i++;
 	}
 	ft_free_tab(lines);
-	free(file);
 }
 
 int	parse_map(char *path, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:32:27 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 15:51:30 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:46:27 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	parse_color(char **split, t_data *data, int dir)
 		data->map->c = color;
 }
 
-static void	parse_arg(char **split, t_data *data)
+static int	parse_arg(char **split, t_data *data)
 {
 	if (ft_strcmp(split[0], "NO") == 0)
 		parse_texture(split, data, NORTH);
@@ -89,31 +89,36 @@ static void	parse_arg(char **split, t_data *data)
 	else if (ft_strcmp(split[0], "C") == 0)
 		parse_color(split, data, CEILING);
 	else
-		exit_error(ERROR_MAP_CHAR, data);
+		return (1);
+	ft_free_tab(split);
+	return (0);
 }
 
-void	ft_parse_line(char *line, t_data *data)
+void	ft_parse_line(char *line, t_data *data, char **lines)
 {
 	char		**split;
 	static int	bool = 0;
 
 	if (is_map(line) == 0)
 	{
-		ft_add_to_map(line, data);
+		if (ft_add_to_map(line, data) == 1)
+			return (ft_free_tab(lines), exit_error(ERROR_MALLOC, data));
 		bool = 1;
 	}
 	else if (bool == 1)
-		exit_error(ERROR_MAP_IS_NOT_LAST, data);
+		return (ft_free_tab(lines), exit_error(ERROR_FILE_CONTENT, data));
 	else
 	{
 		split = ft_split(line, ' ');
 		if (!split)
-			exit_error(ERROR_MALLOC, data);
+			return (ft_free_tab(lines), exit_error(ERROR_MALLOC, data));
 		if (ft_tablen(split) != 2)
-			exit_error(ERROR_MAP_CHAR, data);
+			return (ft_free_tab(lines), exit_error(ERROR_MAP_CHAR, data));
 		if (split[1] == NULL)
-			exit_error(ERROR_NO_PATH, data);
-		parse_arg(split, data);
-		ft_free_tab(split);
+			return (ft_free_tab(split), ft_free_tab(lines),
+				exit_error(ERROR_FILE_CONTENT, data));
+		if (parse_arg(split, data) == 1)
+			return (ft_free_tab(lines), ft_free_tab(split),
+				exit_error(ERROR_MAP_CHAR, data));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:35:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 16:00:25 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:44:51 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,25 @@ static int	ft_check_map_borders(char **map)
 static int	check_map(t_data *data)
 {
 	size_t	i;
+	size_t	j;
+	int		bool;
 
 	i = 0;
+	bool = 0;
 	if (ft_check_map_borders(data->map->map) == 1)
 		return (ft_puterror(ERROR_MAP_BORDER), 1);
 	while (data->map->map[i] != NULL)
 	{
+		j = -1;
+		while (data->map->map[i][++j])
+		{
+			if (ft_check_if_is_player(data, i, j) == 1)
+			{
+				if (bool == 1)
+					return (ft_puterror(ERROR_MAP_CHAR), 1);
+				bool = 1;
+			}
+		}
 		if (is_map(data->map->map[i]) == 1)
 			return (ft_puterror(ERROR_MAP_CHAR), 1);
 		i++;

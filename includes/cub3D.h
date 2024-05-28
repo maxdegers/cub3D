@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 16:00:46 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:51:17 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define ERROR_F_COLOR "   Error:\nNO color for Floor\n"
 # define ERROR_MAP_CHAR "   Error:\nMap contains invalid characters\n"
 # define ERROR_MAP_NL "   Error:\nMap contains empty lines\n"
-# define ERROR_MAP_IS_NOT_LAST "   Error:\nMap is not the last element\n"
+# define ERROR_FILE_CONTENT "   Error:\nFile content is not valid\n"
 # define ERROR_MAP_BORDER "   Error:\nMap is not surrounded by walls\n"
 /*****************************************************************************/
 /*                                   DIR                                     */
@@ -119,7 +119,7 @@ void	ft_setup_map(t_data *data);
 //	check_file.c
 int		ft_check_file(char *path, t_data *data);
 //	parse_line.c
-void	ft_parse_line(char *line, t_data *data);
+void	ft_parse_line(char *line, t_data *data, char **lines);
 //	check_data.c
 int		check_data(t_data *data);
 int		is_map(char *line);
@@ -134,10 +134,11 @@ void	mlx_destroyer(t_mlx *g);
 int		close_window(t_mlx *g);
 //	parse_line_utils.c
 int		ft_tablen(char **tab);
-void	ft_add_to_map(char *line, t_data *data);
+int		ft_add_to_map(char *line, t_data *data);
 // check_map_utils.c
 int		check_position(char **map, size_t i, size_t j);
 int		check_border(char **map, size_t i, size_t j);
+int		ft_check_if_is_player(t_data *data, size_t i, size_t j);
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/
