@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:48:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 20:56:42 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/27 22:10:42 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static	int	go_to_map(char *line, int *i)
 			(*i)++;
 		c = line[*i];
 		line[*i] = '\0';
-		printf("line: %s\n", &line[start]);
 		if (is_map(&line[start]) == 0)
 		{
 			line[*i] = c;
@@ -63,14 +62,16 @@ void	ft_parse_file(char *path, t_data *data)
 	file = get_file(path);
 	ft_nl_chec(file, data);
 	lines = ft_split(file, '\n');
+	if (!lines)
+		exit_error(ERROR_MALLOC, data);
 	i = 0;
 	while (lines[i])
 	{
-		// ft_parse_line(lines[i], data);
+		ft_parse_line(lines[i], data);
 		i++;
 	}
-	free(file);
 	ft_free_tab(lines);
+	free(file);
 }
 
 int	parse_map(char *path, t_data *data)

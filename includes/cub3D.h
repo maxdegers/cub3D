@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 13:28:40 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:52:44 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define WIDTH 800
 # define HEIGHT 600
 
+# define ERROR_MALLOC "   Error:\nMalloc failed\n"
 # define ERROR_ARG "   Error:\nTry : ./cube3D <map.cub>\n"
 # define ERROR_FILE "   Error:\nFile not found\n"
 # define ERROR_FILE_EXT "   Error:\nFile extension not valid\n" 
@@ -43,6 +44,8 @@
 # define SOUTH 2
 # define WEST 3
 # define EAST 4
+# define FLOOR 5
+# define CEILING 6
 /*****************************************************************************/
 /*                                   ENUM                                    */
 /*****************************************************************************/
@@ -127,6 +130,9 @@ char	*get_file(char *path);
 //	mlx_utils.c
 void	mlx_destroyer(t_mlx *g);
 int		close_window(t_mlx *g);
+//	parse_line_utils.c
+int		ft_tablen(char **tab);
+void	ft_add_to_map(char *line, t_data *data);
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/

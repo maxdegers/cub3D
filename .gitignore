@@ -9,3 +9,4 @@ mlx_linux/libmlx.a
 mlx_linux/libmlx_Linux.a
 libft/libft.a
 mlx_linux/test/main.o
+libft/.objs/ft_split.o
