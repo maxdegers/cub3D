@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:32:27 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/27 22:12:42 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:50:48 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,16 @@ static void	parse_arg(char **split, t_data *data)
 
 void	ft_parse_line(char *line, t_data *data)
 {
-	char	**split;
+	char		**split;
+	static int	bool = 0;
 
 	if (is_map(line) == 0)
+	{
 		ft_add_to_map(line, data);
+		bool = 1;
+	}
+	else if (bool == 1)
+		exit_error(ERROR_MAP_IS_NOT_LAST, data);
 	else
 	{
 		split = ft_split(line, ' ');

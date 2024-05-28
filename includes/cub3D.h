@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 14:04:01 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:50:45 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define ERROR_F_COLOR "   Error:\nNO color for Floor\n"
 # define ERROR_MAP_CHAR "   Error:\nMap contains invalid characters\n"
 # define ERROR_MAP_NL "   Error:\nMap contains empty lines\n"
+# define ERROR_MAP_IS_NOT_LAST "   Error:\nMap is not the last element\n"
 /*****************************************************************************/
 /*                                   DIR                                     */
 /*****************************************************************************/
