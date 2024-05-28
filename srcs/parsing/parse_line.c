@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:32:27 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 21:46:27 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:59:51 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,32 @@
 
 static void	parse_texture(char **split, t_data *data, int dir)
 {
-	if (dir == NORTH)
+	if (dir == NORTH && data->map->no == NULL)
 	{
 		data->map->no = ft_strdup(split[1]);
 		if (!data->map->no)
 			exit_error(ERROR_MALLOC, data);
 	}
-	else if (dir == SOUTH)
+	else if (dir == SOUTH && data->map->so == NULL)
 	{
 		data->map->so = ft_strdup(split[1]);
 		if (!data->map->so)
 			exit_error(ERROR_MALLOC, data);
 	}
-	else if (dir == WEST)
+	else if (dir == WEST && data->map->we == NULL)
 	{
 		data->map->we = ft_strdup(split[1]);
 		if (!data->map->we)
 			exit_error(ERROR_MALLOC, data);
 	}
-	else if (dir == EAST)
+	else if (dir == EAST && data->map->ea == NULL)
 	{
 		data->map->ea = ft_strdup(split[1]);
 		if (!data->map->ea)
 			exit_error(ERROR_MALLOC, data);
 	}
+	else
+		exit_error(ERROR_FILE_CONTENT, data);
 }
 
 static void	ft_add_color(t_color *color, int value)
