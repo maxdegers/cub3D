@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:35:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 21:44:51 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 09:50:54 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,7 @@ int	check_data(t_data *data)
 		return (ft_puterror(ERROR_F_COLOR), 1);
 	if (check_map(data) == 1)
 		return (1);
+	// if (check_texture(data) == 1)
+	// 	return (1);
 	return (0);
 }

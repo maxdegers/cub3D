@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 12:18:49 by mbrousse          #+#    #+#              #
-#    Updated: 2024/05/28 16:01:06 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/05/29 09:49:00 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRC_PARSING	=	parse_map.c	\
 				check_file.c\
 				check_data.c\
 				setup.c		\
-				read_file.c
+				read_file.c \
+				parse_texture.c
 				
 
 PARSING	=	$(addprefix $(DIR_PARSING), $(SRC_PARSING))

@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 16:51:17 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 09:50:10 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define ERROR_MAP_NL "   Error:\nMap contains empty lines\n"
 # define ERROR_FILE_CONTENT "   Error:\nFile content is not valid\n"
 # define ERROR_MAP_BORDER "   Error:\nMap is not surrounded by walls\n"
+# define ERROR_FILE_REPETITION "   Error:\nRepetition of data in file\n"
 /*****************************************************************************/
 /*                                   DIR                                     */
 /*****************************************************************************/
@@ -118,6 +119,7 @@ int		parse_map(char *path, t_data *data);
 void	ft_setup_map(t_data *data);
 //	check_file.c
 int		ft_check_file(char *path, t_data *data);
+int		check_path_exist(char *path);
 //	parse_line.c
 void	ft_parse_line(char *line, t_data *data, char **lines);
 //	check_data.c
@@ -125,7 +127,9 @@ int		check_data(t_data *data);
 int		is_map(char *line);
 // read_file.c
 char	*get_file(char *path);
-
+// parse_texture.c
+void	parse_texture(char **split, t_data *data, int dir, char **lines);
+int		check_texture(t_data *data);
 /*****************************************************************************/
 /*                                   UTILS                                   */
 /*****************************************************************************/
