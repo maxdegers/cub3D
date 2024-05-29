@@ -45,6 +45,7 @@ ${OBJ_D}:
 	@mkdir -p ${OBJ_D}
 	@mkdir -p ${OBJ_D}main
 	@mkdir -p ${OBJ_D}error
+	@mkdir -p ${OBJ_D}math
 	@mkdir -p ${OBJ_D}parsing
 	@mkdir -p ${OBJ_D}utils
 
