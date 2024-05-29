@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 14:01:19 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:21:19 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,21 @@
 /*****************************************************************************/
 /*                                  STRUCT                                   */
 /*****************************************************************************/
+
+typedef struct s_vector
+{
+	double	x;
+	double	y;
+}	t_vector;
+
+typedef struct s_player
+{
+	t_vector	dir;
+	t_vector	pos;
+	t_vector	plane;
+	double		angle;
+}	t_player;
+
 typedef struct s_color
 {
 	int	r;
@@ -62,11 +77,6 @@ typedef struct s_color
 	int	rgb;
 }	t_color;
 
-typedef struct s_vector
-{
-	double	x;
-	double	y;
-}	t_vector;
 
 typedef struct s_map
 {
@@ -74,7 +84,8 @@ typedef struct s_map
 	char		*so;
 	char		*we;
 	char		*ea;
-	t_vector	player;
+	t_vector	player_pos;
+	t_player	*player;
 	int			player_dir;
 	t_color		f;
 	t_color		c;

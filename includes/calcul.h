@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcul.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gberthol <gberthol@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:51:38 by gberthol          #+#    #+#             */
-/*   Updated: 2024/05/28 13:51:38 by gberthol         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:20:43 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@ typedef struct s_vector_i
 	int	y;
 }	t_vector_i;
 
-typedef struct s_player
-{
-	t_vector	dir;
-	t_vector	pos;
-	t_vector	plane;
-	double		angle;
-}	t_player;
-
 typedef struct s_ray
 {
 	t_vector	dir;
@@ -39,6 +31,8 @@ typedef struct s_ray
 	int			hit;
 	int			side;
 	int			line_height;
+	int			x;
 }	t_ray;
 
+void	display_column(t_map *map, t_data *data);
 #endif

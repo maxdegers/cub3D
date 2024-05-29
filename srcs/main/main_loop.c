@@ -6,11 +6,12 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:10 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 13:53:37 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:02:39 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include "calcul.h"
 
 int	key_p(int key, t_data *data)
 {

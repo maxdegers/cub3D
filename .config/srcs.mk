@@ -6,12 +6,13 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 12:18:49 by mbrousse          #+#    #+#              #
-#    Updated: 2024/05/29 09:49:00 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/05/29 14:23:29 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	$(MAIN)		\
 			$(ERROR)	\
+			$(MATH)		\
 			$(PARSING)	\
 			$(UTILS)
 
@@ -28,6 +29,12 @@ SRC_ERROR	=	error.c\
 				free.c
 
 ERROR	=	$(addprefix $(DIR_ERROR), $(SRC_ERROR))
+
+DIR_MATH	=	math/
+
+SRC_MATH	=	raycasting2.c
+
+MATH	=	$(addprefix $(DIR_MATH), $(SRC_MATH))
 
 DIR_PARSING	=	parsing/
 
