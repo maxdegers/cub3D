@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:10 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 13:46:46 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:53:37 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,15 @@ int	key_p(int key, t_data *data)
 	return (0);
 }
 
+int	ft_generate(t_data *data)
+{
+	display_column(data->map, data);
+	return (0);
+}
+
 int	main_loop(t_data *data, t_mlx *cub)
 {
-	// mlx_loop_hook(cub->mlx, ->>add_fonction_qui_gen<<-, data);
+	mlx_loop_hook(cub->mlx, ft_generate, data);
 	mlx_hook(cub->win, 17, 1L << 0, close_window, data->g);
 	mlx_hook(cub->win, 2, 1L << 0, key_p, data);
 	mlx_loop(cub->mlx);
