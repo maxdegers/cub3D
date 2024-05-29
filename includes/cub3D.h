@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 10:16:01 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:01:19 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int		ft_add_to_map(char *line, t_data *data);
 // check_map_utils.c
 int		check_position(char **map, size_t i, size_t j);
 int		check_border(char **map, size_t i, size_t j);
-int		ft_check_if_is_player(t_data *data, size_t i, size_t j);
+int		ft_check_if_is_player(t_data *data, size_t i, size_t j, int	bool);
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/

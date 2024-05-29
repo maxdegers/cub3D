@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:10:03 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 16:43:20 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:00:21 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,18 @@ int	check_border(char **map, size_t i, size_t j)
 	return (0);
 }
 
-int	ft_check_if_is_player(t_data *data, size_t i, size_t j)
+int	ft_check_if_is_player(t_data *data, size_t i, size_t j, int bool)
 {
 	if (data->map->map[i][j] == 'N' || data->map->map[i][j] == 'S'
 		|| data->map->map[i][j] == 'E' || data->map->map[i][j] == 'W')
+	{
+		if (bool == 0)
+		{
+			data->map->player_dir = data->map->map[i][j];
+			data->map->player.y = i;
+			data->map->player.x = j;
+		}
 		return (1);
+	}
 	return (0);
 }
