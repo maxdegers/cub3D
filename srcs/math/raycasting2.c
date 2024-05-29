@@ -6,7 +6,7 @@
 /*   By: gberthol <gberthol@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:08:10 by gberthol          #+#    #+#             */
-/*   Updated: 2024/05/29 12:08:10 by gberthol         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:53:35 by gberthol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	draw_columns(t_map *map, t_data *data, t_ray *ray)
 	int	draw_end;
 
 	line_height = (int)(HEIGHT / ray->perm_wall_dist);
-	draw_start = -lineHeight / 2 + HEIGHT / 2;
-	if (drawStart < 0)
-		drawStart = 0;
-	draw_end = lineHeight / 2 + HEIGHT / 2;
-	if (drawEnd >= HEIGHT)
-		drawEnd = HEIGHT - 1;
+	draw_start = -line_height / 2 + HEIGHT / 2;
+	if (draw_start < 0)
+		draw_start = 0;
+	draw_end = line_height / 2 + HEIGHT / 2;
+	if (draw_end >= HEIGHT)
+		draw_end = HEIGHT - 1;
 	mlx_draw_line(data, draw_start, draw_end, x);
 }
 
@@ -89,6 +89,7 @@ void	calc_step(t_map *map, t_data *data, t_ray *ray)
 		ray->side_dist.y = (map_pos.y + 1.0 - map->player->pos.y)
 			* ray->delta_dist.y;
 	}
+	find_wall(map, data, ray);
 }
 
 void	calc_dist(t_map *map, t_data *data, t_ray *ray)
@@ -101,6 +102,7 @@ void	calc_dist(t_map *map, t_data *data, t_ray *ray)
 	ray->delta_dist.y = !(ray->dir.y) * 2147483647;
 	if (ray->dir.y)
 		ray->delta_dist.y = fabs(1 / ray->dir.y);
+	calc_step(map, data, ray);
 }
 
 void	display_column(t_map *map, t_data *data)
