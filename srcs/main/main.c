@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:16:54 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 14:13:25 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:10:14 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void	set_player(t_data *data, t_player *player)
 	}
 	player->pos.x = data->map->player_pos.x;
 	player->pos.y = data->map->player_pos.y;
+	player->plane.x = 0;
+	player->plane.y = 0.66;
 }
 
 int	main(int argc, char *argv[])
