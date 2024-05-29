@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 09:50:10 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:16:01 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@
 # define WIDTH 800
 # define HEIGHT 600
 
-# define ERROR_MALLOC "   Error:\nMalloc failed\n"
-# define ERROR_ARG "   Error:\nTry : ./cube3D <map.cub>\n"
-# define ERROR_FILE "   Error:\nFile not found\n"
-# define ERROR_FILE_EXT "   Error:\nFile extension not valid\n" 
-# define ERROR_FILE_NAME "   Error:\nFile name not valid\n" 
-# define ERROR_FILE_OPEN "   Error:\nFile can't be opened\n"
-# define ERROR_NO_PATH "   Error:\nNO path for NO texture\n"
-# define ERROR_SO_PATH "   Error:\nNO path for SO texture\n"
-# define ERROR_WE_PATH "   Error:\nNO path for WE texture\n"
-# define ERROR_EA_PATH "   Error:\nNO path for EA texture\n"
-# define ERROR_C_COLOR "   Error:\nNO color for Ceiling\n"
-# define ERROR_F_COLOR "   Error:\nNO color for Floor\n"
-# define ERROR_MAP_CHAR "   Error:\nMap contains invalid characters\n"
-# define ERROR_MAP_NL "   Error:\nMap contains empty lines\n"
-# define ERROR_FILE_CONTENT "   Error:\nFile content is not valid\n"
-# define ERROR_MAP_BORDER "   Error:\nMap is not surrounded by walls\n"
-# define ERROR_FILE_REPETITION "   Error:\nRepetition of data in file\n"
+# define ERROR_MALLOC "Cub3D: Malloc failed\n"
+# define ERROR_ARG "Cub3D: Try : ./cube3D <map.cub>\n"
+# define ERROR_FILE "Cub3D: File not found\n"
+# define ERROR_FILE_EXT "Cub3D: File extension not valid\n" 
+# define ERROR_FILE_NAME "Cub3D: File name not valid\n" 
+# define ERROR_FILE_OPEN "Cub3D: File can't be opened\n"
+# define ERROR_NO_PATH "Cub3D: NO path for NO texture\n"
+# define ERROR_SO_PATH "Cub3D: NO path for SO texture\n"
+# define ERROR_WE_PATH "Cub3D: NO path for WE texture\n"
+# define ERROR_EA_PATH "Cub3D: NO path for EA texture\n"
+# define ERROR_C_COLOR "Cub3D: NO color for Ceiling\n"
+# define ERROR_F_COLOR "Cub3D: NO color for Floor\n"
+# define ERROR_MAP_CHAR "Cub3D: Map contains invalid characters\n"
+# define ERROR_MAP_NL "Cub3D: Map contains empty lines\n"
+# define ERROR_FILE_CONTENT "Cub3D: File content is not valid\n"
+# define ERROR_MAP_BORDER "Cub3D: Map is not surrounded by walls\n"
+# define ERROR_FILE_REPETITION "Cub3D: Repetition of data in file\n"
 /*****************************************************************************/
 /*                                   DIR                                     */
 /*****************************************************************************/
