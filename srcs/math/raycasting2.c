@@ -42,6 +42,7 @@ void	draw_columns(t_map *map, t_data *data, t_ray *ray)
 
 void	find_wall(t_map *map, t_data *data, t_ray *ray)
 {
+	ray->perm_wall_dist = 5;
 	while (!ray->hit)
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
