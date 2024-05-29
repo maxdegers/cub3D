@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:52:17 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 14:19:20 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:35:58 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,15 @@ void	setup_map(t_map *map)
 void	ft_setup_map(t_data *data)
 {
 	setup_map(data->map);
+}
+
+int	rgb_to_int(double r, double g, double b)
+{
+	int	color;
+
+	color = 0;
+	color |= (int)(b * 255);
+	color |= (int)(g * 255) << 8;
+	color |= (int)(r * 255) << 16;
+	return (color);
 }

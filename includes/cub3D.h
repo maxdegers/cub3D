@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 14:21:19 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:37:35 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int		main_loop(t_data *data, t_mlx *cub);
 int		parse_map(char *path, t_data *data);
 //	setup.c
 void	ft_setup_map(t_data *data);
+int		rgb_to_int(double r, double g, double b);
 //	check_file.c
 int		ft_check_file(char *path, t_data *data);
 int		check_path_exist(char *path);

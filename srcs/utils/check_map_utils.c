@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:10:03 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 14:21:53 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:34:05 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	ft_check_if_is_player(t_data *data, size_t i, size_t j, int bool)
 		if (bool == 0)
 		{
 			data->map->player_dir = data->map->map[i][j];
-			data->map->player->pos.y = i;
-			data->map->player->pos.x = j;
+			data->map->player_pos.y = i;
+			data->map->player_pos.x = j;
 		}
 		return (1);
 	}
