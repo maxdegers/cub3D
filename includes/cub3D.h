@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 14:37:35 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:20:12 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,13 @@ int		ft_add_to_map(char *line, t_data *data);
 int		check_position(char **map, size_t i, size_t j);
 int		check_border(char **map, size_t i, size_t j);
 int		ft_check_if_is_player(t_data *data, size_t i, size_t j, int	bool);
+
+/*****************************************************************************/
+/*                                 MINI_MAPS                                 */
+/*****************************************************************************/
+
+void	display_minimap(t_map *map, t_data *data);
+
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/

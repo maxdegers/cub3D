@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 12:18:49 by mbrousse          #+#    #+#              #
-#    Updated: 2024/05/29 14:31:10 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/05/31 18:18:42 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ SRCS	=	$(MAIN)		\
 			$(ERROR)	\
 			$(MATH)		\
 			$(PARSING)	\
+			$(MINI_MAPS)\
 			$(UTILS)
 
 DIR_MAIN	=	main/
@@ -57,3 +58,9 @@ SRC_UTILS	=	mlx_utils.c		  \
 				check_map_utils.c \
 
 UTILS	=	$(addprefix $(DIR_UTILS), $(SRC_UTILS))
+
+DIR_MINI_MAPS	=	mini_maps/
+
+SRC_MINI_MAPS	=	mini_map.c
+
+MINI_MAPS	=	$(addprefix $(DIR_MINI_MAPS), $(SRC_MINI_MAPS))

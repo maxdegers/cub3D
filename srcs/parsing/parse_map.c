@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:48:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 14:36:52 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:00:11 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ int	parse_map(char *path, t_data *data)
 	ft_parse_file(path, data);
 	if (check_data(data) == 1)
 		return (1);
-	data->map->c.rgb = rgb_to_int(data->map->c.r, data->map->c.g, data->map->c.b);
-	data->map->f.rgb = rgb_to_int(data->map->f.r, data->map->f.g, data->map->f.b);
+	data->map->c.rgb = rgb_to_int(data->map->c.r,
+			data->map->c.g, data->map->c.b);
+	data->map->f.rgb = rgb_to_int(data->map->f.r,
+			data->map->f.g, data->map->f.b);
 	return (0);
 }
