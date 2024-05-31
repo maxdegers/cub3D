@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:17:31 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 19:11:41 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:59:38 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ void	display_minimap(t_map *map, t_data *data)
 {
 	int		mini_map_width;
 	int		mini_map_height;
-	char	**minimap;
+	// char	**minimap;
 
-	minimap = set_minimap(map);
+	// minimap = set_minimap(map);
+	mini_map_width = map->window.x / 10;
+	mini_map_height = map->window.y / 10;
 	draw_map_mini_map(map, data, mini_map_width, mini_map_height);
 }

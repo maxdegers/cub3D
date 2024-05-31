@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:10 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 18:19:15 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:00:11 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	key_p(int key, t_data *data)
 int	ft_generate(t_data *data)
 {
 	display_column(data->map, data);
-	display_minimap(data->map, data);
+	// display_minimap(data->map, data); pour afficher la minimap
 	return (0);
 }
 
