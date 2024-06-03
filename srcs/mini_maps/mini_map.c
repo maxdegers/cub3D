@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:17:31 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 19:59:38 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 07:41:33 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_put_player(t_data *data, int color)
 	}
 }
 
-void	draw_map_mini_map(t_map *map, t_data *data, int mini_map_width, int mini_map_height)
+void	draw_minimap(t_map *map, t_data *data)
 {
 	int		i;
 	int		j;
@@ -61,8 +61,6 @@ void	draw_map_mini_map(t_map *map, t_data *data, int mini_map_width, int mini_ma
 	int		y;
 
 	i = 0;
-	(void)mini_map_width;
-	(void)mini_map_height;
 	while (map->map[i])
 	{
 		j = 0;
@@ -84,12 +82,6 @@ void	draw_map_mini_map(t_map *map, t_data *data, int mini_map_width, int mini_ma
 
 void	display_minimap(t_map *map, t_data *data)
 {
-	int		mini_map_width;
-	int		mini_map_height;
-	// char	**minimap;
-
-	// minimap = set_minimap(map);
-	mini_map_width = map->window.x / 10;
-	mini_map_height = map->window.y / 10;
-	draw_map_mini_map(map, data, mini_map_width, mini_map_height);
+	// get_mini_map(map, data);
+	draw_minimap(map, data);
 }

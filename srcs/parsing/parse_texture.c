@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 09:44:07 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 10:09:33 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 07:09:34 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ int	check_texture(t_data *data)
 	if (check_path_exist(data->map->we) == 1)
 		return (1);
 	if (check_path_exist(data->map->ea) == 1)
+		return (1);
+	if (check_path_type(data->map->no, ".xpm") == 1)
+		return (1);
+	if (check_path_type(data->map->so, ".xpm") == 1)
+		return (1);
+	if (check_path_type(data->map->we, ".xpm") == 1)
+		return (1);
+	if (check_path_type(data->map->ea, ".xpm") == 1)
 		return (1);
 	return (0);
 }

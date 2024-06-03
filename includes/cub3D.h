@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 07:02:49 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:44:08 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
 }	t_mlx;
 
 typedef struct s_data
@@ -147,6 +148,7 @@ int		rgb_to_int(double r, double g, double b);
 //	check_file.c
 int		ft_check_file(char *path, t_data *data);
 int		check_path_exist(char *path);
+int		check_path_type(char *path, char *type);
 //	parse_line.c
 void	ft_parse_line(char *line, t_data *data, char **lines);
 //	check_data.c
