@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 09:44:08 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:56:44 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@
 # include "../mlx_linux/mlx.h"
 # include <math.h>
 
-# define WIDTH 1920
-# define HEIGHT 1080
+// # define WIDTH 1920
+// # define HEIGHT 1080
+
+# define WIDTH 920
+# define HEIGHT 720
 
 # define MOVE_SPEED 0.05
 # define ROTATE_SPEED 0.05
@@ -106,6 +109,7 @@ typedef struct s_map
 	t_color		c;
 	t_vector	window;
 	char		**map;
+	int			zoom;
 }	t_map;
 
 typedef struct s_mlx
@@ -115,10 +119,20 @@ typedef struct s_mlx
 	void	*img;
 }	t_mlx;
 
+typedef struct s_mm
+{
+	int		x;
+	int		y;
+	char	**map;
+	int		psize;
+	int		wsize;
+}	t_mm;
+
 typedef struct s_data
 {
 	t_mlx	*g;
 	t_map	*map;
+	t_mm	*mm;
 }	t_data;
 
 /*****************************************************************************/

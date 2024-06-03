@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:52:17 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 06:59:49 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:02:01 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	setup_map(t_map *map)
 	map->map = NULL;
 	map->window.x = WIDTH;
 	map->window.y = HEIGHT;
+	map->zoom = 1;
 }
 
 void	ft_setup_map(t_data *data)

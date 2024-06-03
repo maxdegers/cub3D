@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:10 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 07:50:34 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:42:11 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	key_p(int key, t_data *data)
 {
+	printf("key: %d\n", key);
 	if (key == 65307)
 		close_window(data->g);
 	else if (key == 'w')
@@ -29,15 +30,17 @@ int	key_p(int key, t_data *data)
 		ft_rotate_l(data);
 	else if (key == 65363)
 		ft_rotate_r(data);
-	// else
-	// 	close_window(data);
+	else if (key == 65451) // +
+		data->map->zoom += 1;
+	else if (key == 65453) // -
+		data->map->zoom -= 1;
 	return (0);
 }
 
 int	ft_generate(t_data *data)
 {
-	display_column(data->map, data);
-	// display_minimap(data->map, data);
+	// display_column(data->map, data);
+	display_minimap(data->map, data);
 	return (0);
 }
 

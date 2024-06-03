@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:16:54 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 06:59:12 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:14:12 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	ft_init_mlx(t_data *data)
 		return (free_all(data), ft_perror());
 	data->g->win = mlx_new_window(data->g->mlx, data->map->window.x,
 			data->map->window.y, "cub3D");
+	if (!data->g->win)
+		return (free_all(data), mlx_destroyer(data->g), ft_perror());
 }
 
 static void	set_player(t_data *data, t_player *player)
