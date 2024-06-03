@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 12:18:49 by mbrousse          #+#    #+#              #
-#    Updated: 2024/05/31 18:18:42 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/06/03 06:28:03 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ SRCS	=	$(MAIN)		\
 			$(ERROR)	\
 			$(MATH)		\
 			$(PARSING)	\
+			$(MOVE)		\
 			$(MINI_MAPS)\
 			$(UTILS)
 
@@ -64,3 +65,14 @@ DIR_MINI_MAPS	=	mini_maps/
 SRC_MINI_MAPS	=	mini_map.c
 
 MINI_MAPS	=	$(addprefix $(DIR_MINI_MAPS), $(SRC_MINI_MAPS))
+
+DIR_MOVE	=	move/
+
+SRC_MOVE	=	move_up.c	\
+				move_down.c	\
+				move_left.c	\
+				move_right.c\
+				rotate_left.c\
+				rotate_right.c
+
+MOVE	=	$(addprefix $(DIR_MOVE), $(SRC_MOVE))

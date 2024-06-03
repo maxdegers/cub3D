@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:52:17 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 14:35:58 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 06:59:49 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	setup_map(t_map *map)
 	map->c.r = -1;
 	map->c.g = -1;
 	map->c.b = -1;
+	map->player->plane.x = 0;
+	map->player->plane.y = 0;
+	map->player->dir.x = 0;
+	map->player->dir.y = 0;
 	map->player_dir = 0;
 	map->player_pos.x = -1;
 	map->player_pos.y = -1;

@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 18:20:12 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 07:02:49 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 # include "../mlx_linux/mlx_int.h"
 # include "../libft/incs/libft.h"
 # include "../mlx_linux/mlx.h"
+# include <math.h>
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1920
+# define HEIGHT 1080
+
+# define MOVE_SPEED 0.05
+# define ROTATE_SPEED 0.05
 
 # define ERROR_MALLOC "Cub3D: Malloc failed\n"
 # define ERROR_ARG "Cub3D: Try : ./cube3D <map.cub>\n"
@@ -37,6 +41,17 @@
 # define ERROR_FILE_CONTENT "Cub3D: File content is not valid\n"
 # define ERROR_MAP_BORDER "Cub3D: Map is not surrounded by walls\n"
 # define ERROR_FILE_REPETITION "Cub3D: Repetition of data in file\n"
+
+/*****************************************************************************/
+/*                                   COLOR                                   */
+/*****************************************************************************/
+# define BLUE			0x3a8399
+# define RED			0xFF0000
+# define YELLOW			0xffff00
+# define YELLOW_SIDE	0xa67924
+# define BROWN			0x7a5631
+# define BLACK			0x000000
+# define WHITE			0xffffff
 /*****************************************************************************/
 /*                                   DIR                                     */
 /*****************************************************************************/
@@ -161,6 +176,17 @@ int		ft_check_if_is_player(t_data *data, size_t i, size_t j, int	bool);
 /*****************************************************************************/
 
 void	display_minimap(t_map *map, t_data *data);
+
+/*****************************************************************************/
+/*                                 MOVEMENT                                  */
+/*****************************************************************************/
+
+void	ft_move_u(t_data *data);
+void	ft_move_d(t_data *data);
+void	ft_move_l(t_data *data);
+void	ft_move_r(t_data *data);
+void	ft_rotate_l(t_data *data);
+void	ft_rotate_r(t_data *data);
 
 /*****************************************************************************/
 /*                                                                           */
