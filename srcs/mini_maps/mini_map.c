@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:17:31 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 11:02:13 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:26:01 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	mlx_pixel_put(data->g->mlx, data->g->win, x, y, color);
+	char	*dst;
+
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
+	dst = data->g->img->addr + (y * data->g->img->line_length + x * (
+				data->g->img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 void	put_block(t_data *data, int x, int y, int color)
@@ -85,21 +91,46 @@ void	draw_minimap(t_map *map, t_data *data)
 	
 // }
 
+void	init_image(t_im *img, t_data *data)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->bits_per_pixel = 0;
+	img->line_length = 0;
+	img->endian = 0;
+	img->img = mlx_new_image(data->g->mlx,
+			WIDTH, HEIGHT);
+	if (!img->img)
+		exit_error(ERROR_MALLOC, data);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+	if (!img->addr)
+	{
+		mlx_destroy_image(data->g->mlx, data->g->img->img);
+		exit_error(ERROR_MLX, data);
+	}
+}
+
 void	display_minimap(t_map *map, t_data *data)
 {
-	t_mm	mm; // mini map psize 7 and wsize 60 for 1920x1080.
+	t_mm	mm;
+	t_im	img;
 	
-	(void)map;
 	data->mm = &mm;
+	data->g->img = &img;
 	mm.x = 0;
 	mm.y = 0;
-	if (data->map->zoom < 1)
-		data->map->zoom = 1;
-	if (data->map->zoom > 30)
-		data->map->zoom = 30;
-	mm.psize = data->map->zoom / 2;
-	mm.wsize = data->map->zoom * 4;
+	if (data->map->zoom < 2)
+		data->map->zoom = 2;
+	if (data->map->zoom > 20)
+		data->map->zoom = 20;
+	mm.psize = data->map->zoom * 0.5;
+	mm.wsize = data->map->zoom * 1.5;
 	// mm->map = get_mini_map(map, data, mm);
+	init_image(data->g->img, data);
 	draw_minimap(map, data);
+	mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->img->img, 0, 0);
 	// ft_free_tab(mm->map);
+	mlx_destroy_image(data->g->mlx, data->g->img->img);
+
 }

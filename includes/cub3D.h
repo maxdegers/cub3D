@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 10:56:44 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:58:43 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define ERROR_FILE_CONTENT "Cub3D: File content is not valid\n"
 # define ERROR_MAP_BORDER "Cub3D: Map is not surrounded by walls\n"
 # define ERROR_FILE_REPETITION "Cub3D: Repetition of data in file\n"
+# define ERROR_MLX "Cub3D: Mlx failed\n"
 
 /*****************************************************************************/
 /*                                   COLOR                                   */
@@ -95,7 +96,6 @@ typedef struct s_color
 	int	rgb;
 }	t_color;
 
-
 typedef struct s_map
 {
 	char		*no;
@@ -112,11 +112,20 @@ typedef struct s_map
 	int			zoom;
 }	t_map;
 
+typedef	struct s_im
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_im;
+
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
+	t_im	*img;
 }	t_mlx;
 
 typedef struct s_mm
