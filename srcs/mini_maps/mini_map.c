@@ -59,7 +59,7 @@ void	ft_put_player(t_data *data, int color)
 	}
 }
 
-void	draw_minimap(t_map *map, t_data *data)
+void	draw_minimap(char **map, t_data *data)
 {
 	int		i;
 	int		j;
@@ -67,12 +67,12 @@ void	draw_minimap(t_map *map, t_data *data)
 	int		y;
 
 	i = 0;
-	while (map->map[i])
+	while (map[i])
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (map[i][j])
 		{
-			if (map->map[i][j] == '1')
+			if (map[i][j] == '1')
 			{
 				x = j * data->mm->wsize;
 				y = i * data->mm->wsize;
@@ -128,7 +128,7 @@ void	display_minimap(t_map *map, t_data *data)
 	mm.wsize = data->map->zoom * 1.5;
 	// mm->map = get_mini_map(map, data, mm);
 	init_image(data->g->img, data);
-	draw_minimap(map, data);
+	draw_minimap(data->map->map, data);
 	mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->img->img, 0, 0);
 	// ft_free_tab(mm->map);
 	mlx_destroy_image(data->g->mlx, data->g->img->img);

@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 13:46:33 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:06:13 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,10 @@ typedef struct s_mlx
 
 typedef struct s_mm
 {
-	int		x;
-	int		y;
+	int		xt;
+	int		yl;
+	int		xb;
+	int		yr;
 	char	**map;
 	int		psize;
 	int		wsize;
