@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:48:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/30 13:00:11 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:01:51 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ static	int	go_to_map(char *line, int *i)
 static void	ft_nl_chec(char *line, t_data *data)
 {
 	int		i;
-	int		bool;
+	int		b;
 
 	i = -1;
-	bool = 0;
+	b = 0;
 	while (line[++i])
 	{
-		if (bool == 0 && go_to_map(line, &i) == 1)
-			bool = 1;
-		if (bool == 1 && line[i] == '\n' && line[i + 1] == '\n')
+		if (b == 0 && go_to_map(line, &i) == 1)
+			b = 1;
+		if (b == 1 && line[i] == '\n' && line[i + 1] == '\n')
 			return (exit_error(ERROR_MAP_NL, data));
 	}
 }

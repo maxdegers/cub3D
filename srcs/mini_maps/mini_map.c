@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:17:31 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 13:31:36 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:50:52 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,7 @@ void	display_minimap(t_map *map, t_data *data)
 	
 	data->mm = &mm;
 	data->g->img = &img;
-	mm.x = 0;
-	mm.y = 0;
+	(void)map;
 	if (data->map->zoom < 0)
 		data->map->zoom = 0;
 	if (data->map->zoom > 10)

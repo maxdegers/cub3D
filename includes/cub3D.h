@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/04 15:06:13 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:24:37 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "../libft/incs/libft.h"
 # include "../mlx_linux/mlx.h"
 # include <math.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include <stdbool.h>
 
 // # define WIDTH 1920
 // # define HEIGHT 1080
@@ -24,7 +27,6 @@
 # define WIDTH 920
 # define HEIGHT 720
 
-# define MOVE_SPEED 0.05
 # define ROTATE_SPEED 0.05
 
 # define ERROR_MALLOC "Cub3D: Malloc failed\n"
@@ -85,6 +87,8 @@ typedef struct s_player
 	t_vector	dir;
 	t_vector	pos;
 	t_vector	plane;
+	double		mov_speed;
+	double		rot_speed;
 	double		angle;
 }	t_player;
 
@@ -144,6 +148,12 @@ typedef struct s_data
 	t_mlx	*g;
 	t_map	*map;
 	t_mm	*mm;
+	bool	mv_up;
+	bool	mv_down;
+	bool	mv_left;
+	bool	mv_right;
+	bool	rot_left;
+	bool	rot_right;
 }	t_data;
 
 /*****************************************************************************/
@@ -193,10 +203,11 @@ int		close_window(t_mlx *g);
 //	parse_line_utils.c
 int		ft_tablen(char **tab);
 int		ft_add_to_map(char *line, t_data *data);
+int		ft_striscolor(char *str);
 // check_map_utils.c
 int		check_position(char **map, size_t i, size_t j);
 int		check_border(char **map, size_t i, size_t j);
-int		ft_check_if_is_player(t_data *data, size_t i, size_t j, int	bool);
+int		ft_check_if_is_player(t_data *data, size_t i, size_t j, int	b);
 
 /*****************************************************************************/
 /*                                 MINI_MAPS                                 */

@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:16:54 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 10:14:12 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:37:36 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 static void	ft_init_mlx(t_data *data)
 {
+	data->mv_down = False;
+	data->mv_up = False;
+	data->mv_left = False;
+	data->mv_right = False;
+	data->rot_left = False;
+	data->rot_right = False;
 	data->g->mlx = mlx_init();
 	if (!data->g->mlx)
 		return (free_all(data), ft_perror());
@@ -25,6 +31,10 @@ static void	ft_init_mlx(t_data *data)
 
 static void	set_player(t_data *data, t_player *player)
 {
+	player->dir.x = 0;
+	player->dir.y = 0;
+	player->plane.x = 0;
+	player->plane.y = 0;
 	if (data->map->player_dir == 'N')
 	{
 		player->dir.x = -1;
@@ -45,8 +55,10 @@ static void	set_player(t_data *data, t_player *player)
 		player->dir.y = -1;
 		player->plane.x = -0.66;
 	}
-	player->pos.x = (double)data->map->player_pos.x;
-	player->pos.y = (double)data->map->player_pos.y;
+	player->pos.x = data->map->player_pos.x;
+	player->pos.y = data->map->player_pos.y;
+	player->mov_speed = 0.1;
+	player->rot_speed = 0.1;
 }
 
 int	main(int argc, char *argv[])

@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:32:27 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 10:10:54 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:08:58 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	parse_color(char **split, t_data *data, int dir, char **lines)
 	if (!split2)
 		return (ft_free_tab(split), ft_free_tab(lines),
 			exit_error(ERROR_MALLOC, data));
-	if (ft_tablen(split2) != 3)
+	if (ft_tablen(split2) != 3 || ft_striscolor(split2[0]) == 0
+		|| ft_striscolor(split2[1]) == 0 || ft_striscolor(split2[2]) == 0)
 		return (ft_free_tab(split), ft_free_tab(split2),
 			ft_free_tab(lines), exit_error(ERROR_MAP_CHAR, data));
 	ft_add_color(&color, ft_atoi(split2[0]));
@@ -77,15 +78,15 @@ static int	parse_arg(char **split, t_data *data, char **lines)
 void	ft_parse_line(char *line, t_data *data, char **lines)
 {
 	char		**split;
-	static int	bool = 0;
+	static int	b = 0;
 
 	if (is_map(line) == 0)
 	{
 		if (ft_add_to_map(line, data) == 1)
 			return (ft_free_tab(lines), exit_error(ERROR_MALLOC, data));
-		bool = 1;
+		b = 1;
 	}
-	else if (bool == 1)
+	else if (b == 1)
 		return (ft_free_tab(lines), exit_error(ERROR_FILE_CONTENT, data));
 	else
 	{

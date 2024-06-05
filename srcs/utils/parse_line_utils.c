@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:35:20 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 21:31:38 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:08:58 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,21 @@ int	ft_add_to_map(char *line, t_data *data)
 	data->map->map[i + 1] = NULL;
 	ft_free_tab(tmp);
 	return (0);
+}
+
+int	ft_striscolor(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	i = ft_atoi(str);
+	if (i < 0 || i > 255)
+		return (0);
+	return (1);
 }

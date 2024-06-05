@@ -6,29 +6,53 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:10 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/04 15:30:47 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:13:42 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "calcul.h"
 
-int	key_p(int key, t_data *data)
+void	mv_player(t_data *data)
+{
+	if (data->mv_up == True)
+		ft_move_u(data);
+	if (data->mv_down == True)
+		ft_move_d(data);
+	if (data->mv_left == True)
+		ft_move_l(data);
+	if (data->mv_right == True)
+		ft_move_r(data);
+	if (data->rot_left == True)
+		ft_rotate_l(data);
+	if (data->rot_right == True)
+		ft_rotate_r(data);
+}
+
+int	ft_generate(t_data *data)
+{
+	mv_player(data);
+	display_column(data->map, data);
+	display_minimap(data->map, data);
+	return (0);
+}
+
+int	key_press(int key, t_data *data)
 {
 	if (key == 65307)
 		close_window(data->g);
 	else if (key == 'w')
-		ft_move_u(data);
+		data->mv_up = True;
 	else if (key == 's')
-		ft_move_d(data);
+		data->mv_down = True;
 	else if (key == 'a')
-		ft_move_l(data);
+		data->mv_left = True;
 	else if (key == 'd')
-		ft_move_r(data);
-	else if (key == 65361)
-		ft_rotate_l(data);
-	else if (key == 65363)
-		ft_rotate_r(data);
+		data->mv_right = True;
+	else if (key == 65361) // left
+		data->rot_left = True;
+	else if (key == 65363) // right
+		data->rot_right = True;
 	else if (key == 65451) // +
 		data->map->zoom += 1;
 	else if (key == 65453) // -
@@ -36,18 +60,29 @@ int	key_p(int key, t_data *data)
 	return (0);
 }
 
-int	ft_generate(t_data *data)
+int	key_release(int key, t_data *data)
 {
-	display_column(data->map, data);
-	display_minimap(data->map, data);
+	if (key == 'w')
+		data->mv_up = False;
+	else if (key == 's')
+		data->mv_down = False;
+	else if (key == 'a')
+		data->mv_left = False;
+	else if (key == 'd')
+		data->mv_right = False;
+	else if (key == 65361) // left
+		data->rot_left = False;
+	else if (key == 65363) // right
+		data->rot_right = False;
 	return (0);
 }
 
 int	main_loop(t_data *data, t_mlx *cub)
 {
 	mlx_loop_hook(cub->mlx, ft_generate, data);
+	mlx_hook(cub->win, KeyPress, KeyPressMask, key_press, data);
+	mlx_hook(cub->win, KeyRelease, KeyReleaseMask, key_release, data);
 	mlx_hook(cub->win, 17, 1L << 0, close_window, data->g);
-	mlx_hook(cub->win, 2, 1L << 0, key_p, data);
 	mlx_clear_window(data->g->mlx, data->g->win);
 	mlx_loop(cub->mlx);
 	mlx_destroyer(cub);
