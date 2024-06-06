@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:35:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/05 15:06:17 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:35:56 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,67 @@ static int	check_map(t_data *data)
 	return (0);
 }
 
+size_t	get_line_longest(char **map)
+{
+	size_t	i;
+	size_t	size;
+	size_t	max;
+
+	i = 0;
+	max = 0;
+	while (map[i])
+	{
+		size = ft_strlen(map[i]);
+		if (size > max)
+			max = size;
+		i++;
+	}
+	return (max);
+}
+
+char	*ft_set_new_line(char *line, int size)
+{
+	char	*new_line;
+	int		i;
+
+	i = 0;
+	new_line = malloc(sizeof(char) * (size + 1));
+	if (new_line == NULL)
+		return (NULL);
+	while (line[i])
+	{
+		new_line[i] = line[i];
+		i++;
+	}
+	while (i < size)
+	{
+		new_line[i] = ' ';
+		i++;
+	}
+	new_line[i] = '\0';
+	free(line);
+	return (new_line);
+}
+
+void	make_map_rect(t_data *data)
+{
+	size_t	size;
+	size_t	i;
+
+	i = 0;
+	size = get_line_longest(data->map->map);
+	while (data->map->map[i])
+	{
+		if (ft_strlen(data->map->map[i]) < size)
+		{
+			data->map->map[i] = ft_set_new_line(data->map->map[i], size);
+			if (data->map->map[i] == NULL)
+				exit_error(ERROR_MALLOC, data);
+		}
+		i++;
+	}
+}
+
 int	check_data(t_data *data)
 {
 	if (data->map->no == NULL)
@@ -107,7 +168,10 @@ int	check_data(t_data *data)
 		return (ft_puterror(ERROR_F_COLOR), 1);
 	if (check_map(data) == 1)
 		return (1);
+	if (data->map->player_dir == 0)
+		return (ft_puterror(ERROR_MAP_PLAYER), 1);
 	if (check_texture(data) == 1)
 		return (1);
+	make_map_rect(data);
 	return (0);
 }

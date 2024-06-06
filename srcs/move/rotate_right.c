@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 06:25:12 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/06 10:09:37 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:18:18 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,4 @@ void	ft_rotate_r(t_data *data)
     double oldPlaneX = data->map->player->plane.x;
     data->map->player->plane.x = data->map->player->plane.x * cos(-data->map->player->rot_speed) - data->map->player->plane.y * sin(-data->map->player->rot_speed);
     data->map->player->plane.y = oldPlaneX * sin(-data->map->player->rot_speed) + data->map->player->plane.y * cos(-data->map->player->rot_speed);
-    
 }

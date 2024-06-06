@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/06 11:52:56 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:41:56 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define ERROR_MAP_BORDER "Cub3D: Map is not surrounded by walls\n"
 # define ERROR_FILE_REPETITION "Cub3D: Repetition of data in file\n"
 # define ERROR_MLX "Cub3D: Mlx failed\n"
+# define ERROR_MAP_PLAYER "Cub3D: No player in map\n"
 
 /*****************************************************************************/
 /*                                   COLOR                                   */
