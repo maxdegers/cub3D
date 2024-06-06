@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:17:31 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/06 12:07:18 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:07:30 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	draw_minimap(char **map, t_data *data)
 {
 	int		i;
 	int		j;
-	int		x;
 	int		y;
+	int		x;
 
 	i = 0;
 	while (map[i])
