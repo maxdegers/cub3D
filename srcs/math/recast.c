@@ -6,115 +6,142 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:24:06 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/04 09:24:09 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:16:33 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include "cub3D.h"
 #include "calcul.h"
 
-void	mlx_draw_line(t_data *data, int draw_start, int draw_stop, int x)
+
+void	ft_drawLine(int x, int drawStart, int drawEnd, unsigned int color, t_data *data)
 {
-	while (draw_start < draw_stop)
+	int	i;
+
+	i = 0;
+	while (i < drawStart)
 	{
-		mlx_pixel_put(data->g->mlx, data->g->win, x,
-			draw_start, data->map->c.rgb);
-		draw_start++;
+		my_mlx_pixel_put(data, x, i, data->map->c.rgb);
+		i++;
 	}
-}
-
-void	draw_columns(t_map *map, t_data *data, t_ray *ray)
-{
-	int	line_height;
-	int	draw_start;
-	int	draw_end;
-
-	(void)map;
-	line_height = (int)(HEIGHT / ray->perm_wall_dist);
-	draw_start = -line_height / 2 + HEIGHT / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = line_height / 2 + HEIGHT / 2;
-	if (draw_end >= HEIGHT)
-		draw_end = HEIGHT - 1;
-	mlx_draw_line(data, draw_start, draw_end, ray->x);
-}
-
-void	find_wall(t_map *map, t_data *data, t_ray *ray)
-{
-	ray->hit = 0;
-	while (ray->hit == 0)
+	while (drawStart < drawEnd)
 	{
-		if (ray->side_dist.x < ray->side_dist.y)
+		my_mlx_pixel_put(data, x, drawStart, color);
+		drawStart++;
+	}
+	while (drawEnd < HEIGHT)
+	{
+		my_mlx_pixel_put(data, x, drawEnd, data->map->f.rgb);
+		drawEnd++;
+	}	
+}
+
+void 	recast(t_data *data)
+{
+	double posX, posY ;  //x and y start position
+  	double dirX = -1, dirY = 0; //initial direction vector
+  	double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
+
+	int	x = 0;
+	int w = WIDTH;
+	int h = HEIGHT;
+	char **worldMap = data->map->map;
+	posX = data->map->player->pos.x;
+	posY = data->map->player->pos.y;
+	dirX = data->map->player->dir.x;
+	dirY = data->map->player->dir.y;
+	planeX = data->map->player->plane.x;
+	planeY = data->map->player->plane.y;
+
+	while (x < w)
+	{
+		//calculate ray position and direction
+		double cameraX = 2 * x / (double)w - 1; //x-coordinate in camera space
+		double rayDirX = dirX + planeX * cameraX;
+		double rayDirY = dirY + planeY * cameraX;
+			//which box of the map we're in
+		int mapX = (int)posX;
+		int mapY = (int)posY;
+
+		//length of ray from current position to next x or y-side
+		double sideDistX;
+		double sideDistY;
+
+		//length of ray from one x or y-side to next x or y-side
+		double deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
+		double deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+		double perpWallDist;
+
+		//what direction to step in x or y-direction (either +1 or -1)
+		int stepX;
+		int stepY;
+
+		int hit = 0; //was there a wall hit?
+		int side; //was a NS or a EW wall hit?
+		//calculate step and initial sideDist
+		if(rayDirX < 0)
 		{
-			ray->side_dist.x += ray->delta_dist.x;
-			ray->pos.x += ray->step.x;
-			ray->side = 0;
+			stepX = -1;
+			sideDistX = (posX - mapX) * deltaDistX;
 		}
 		else
 		{
-			ray->side_dist.y += ray->delta_dist.y;
-			ray->pos.y += ray->step.y;
-			ray->side = 1;
+			stepX = 1;
+			sideDistX = (mapX + 1.0 - posX) * deltaDistX;
 		}
-		if (map->map[ray->pos.y][ray->pos.x] > 0)
-			ray->hit = 1;
-		if (data->map->map[ray->pos.y][ray->pos.x] > 0)
-			ray->hit = 1;
-	}
-	if (ray->side == 0)
-		ray->perm_wall_dist = (ray->side_dist.x - ray->delta_dist.x);
-	else
-		ray->perm_wall_dist = (ray->side_dist.y - ray->delta_dist.y);
-	draw_columns(map, data, ray);
-}
+		if(rayDirY < 0)
+		{
+			stepY = -1;
+			sideDistY = (posY - mapY) * deltaDistY;
+		}
+		else
+		{
+			stepY = 1;
+			sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+		}
+			//perform DDA
+		while(hit == 0)
+		{
+			//jump to next map square, either in x-direction, or in y-direction
+			if(sideDistX < sideDistY)
+			{
+				sideDistX += deltaDistX;
+				mapX += stepX;
+				side = 0;
+			}
+			else
+			{
+				sideDistY += deltaDistY;
+				mapY += stepY;
+				side = 1;
+			}
+			//Check if ray has hit a wall
+			if(worldMap[mapX][mapY] == '1')
+				hit = 1;
+		}
+		if(side == 0)
+			perpWallDist = (sideDistX - deltaDistX);
+		else
+			perpWallDist = (sideDistY - deltaDistY);
+		//Calculate height of line to draw on screen
+		int lineHeight = (int)(h / perpWallDist);
 
-void	calc_step(t_map *map, t_data *data, t_ray *ray)
-{
-	if (ray->dir.x < 0)
-	{
-		ray->step.x = -1;
-		ray->side_dist.x = (map->player->pos.x - ray->pos.x) * ray->delta_dist.x;
-	}
-	else
-	{
-		ray->step.x = 1;
-		ray->side_dist.x = (ray->pos.x + 1.0 - map->player->pos.x) * ray->delta_dist.x;
-	}
-	if (ray->dir.y < 0)
-	{
-		ray->step.y = -1;
-		ray->side_dist.y = (map->player->pos.y - ray->pos.y) * ray->delta_dist.y;
-	}
-	else
-	{
-		ray->step.y = 1;
-		ray->side_dist.y = (ray->pos.y + 1.0 - map->player->pos.y) * ray->delta_dist.y;
-	}
-	find_wall(map, data, ray);
-}
+		//calculate lowest and highest pixel to fill in current stripe
+		int drawStart = -lineHeight / 2 + h / 2;
+		if(drawStart < 0) drawStart = 0;
+		int drawEnd = lineHeight / 2 + h / 2;
+		if(drawEnd >= h) drawEnd = h - 1;
 
-void	calc_dist(t_map *map, t_data *data, t_ray *ray)
-{
-	ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
-	ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
-	calc_step(map, data, ray);
-}
-
-void	display_column(t_map *map, t_data *data)
-{
-	double			camera_x;
-	t_ray			ray;
-
-	ray.x = 0;
-	while (ray.x < WIDTH)
-	{
-		camera_x = 2 * ray.x / (double)WIDTH - 1;
-		ray.dir.x = map->player->dir.x + map->player->plane.x * camera_x;
-		ray.dir.y = map->player->dir.y + map->player->plane.y * camera_x;
-		ray.pos.x = (int)map->player->pos.x;
-		ray.pos.y = (int)map->player->pos.y;
-		calc_dist(map, data, &ray);
-		ray.x++;
+		//choose wall color
+		unsigned int color;
+		color = GREEN;
+		//give x and y sides different brightness
+		if(side == 1) {color = color / 2;}
+		//draw the pixels of the stripe as a vertical line
+		ft_drawLine(x, drawStart, drawEnd, color, data);
+		x++;
 	}
+	display_minimap(data->map, data);
+	mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->img->img, 0, 0);
 }

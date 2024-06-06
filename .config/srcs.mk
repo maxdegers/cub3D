@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 12:18:49 by mbrousse          #+#    #+#              #
-#    Updated: 2024/06/03 06:28:03 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/06/06 09:55:43 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ ERROR	=	$(addprefix $(DIR_ERROR), $(SRC_ERROR))
 
 DIR_MATH	=	math/
 
-SRC_MATH	=	raycasting2.c
+SRC_MATH	=	raycasting2.c\
+				recast.c
 
 MATH	=	$(addprefix $(DIR_MATH), $(SRC_MATH))
 

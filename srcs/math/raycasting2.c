@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:08:10 by gberthol          #+#    #+#             */
-/*   Updated: 2024/05/29 14:24:35 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:15:48 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	find_wall(t_map *map, t_data *data, t_ray *ray)
 			ray->pos.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (map->map[ray->pos.y][ray->pos.x] > 0)
+		if (map->map[ray->pos.y][ray->pos.x] == '1')
 			ray->hit = 1;
 		if (!ray->side)
 			ray->perm_wall_dist = ray->side_dist.x - ray->delta_dist.x;

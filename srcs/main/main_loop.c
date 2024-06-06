@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:10 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/05 15:13:42 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:02:50 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,37 @@ void	mv_player(t_data *data)
 		ft_rotate_r(data);
 }
 
+void	init_image(t_im *img, t_data *data)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->bits_per_pixel = 0;
+	img->line_length = 0;
+	img->endian = 0;
+	img->img = mlx_new_image(data->g->mlx,
+			WIDTH, HEIGHT);
+	if (!img->img)
+		exit_error(ERROR_MALLOC, data);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+	if (!img->addr)
+	{
+		mlx_destroy_image(data->g->mlx, data->g->img->img);
+		exit_error(ERROR_MLX, data);
+	}
+}
+
+
 int	ft_generate(t_data *data)
 {
+	t_im	img;
+
+	data->g->img = &img;
+	init_image(data->g->img, data);
 	mv_player(data);
-	display_column(data->map, data);
-	display_minimap(data->map, data);
+	// display_column(data->map, data);
+	recast(data);
+	mlx_destroy_image(data->g->mlx, data->g->img->img);
 	return (0);
 }
 
@@ -83,7 +109,6 @@ int	main_loop(t_data *data, t_mlx *cub)
 	mlx_hook(cub->win, KeyPress, KeyPressMask, key_press, data);
 	mlx_hook(cub->win, KeyRelease, KeyReleaseMask, key_release, data);
 	mlx_hook(cub->win, 17, 1L << 0, close_window, data->g);
-	mlx_clear_window(data->g->mlx, data->g->win);
 	mlx_loop(cub->mlx);
 	mlx_destroyer(cub);
 	return (0);

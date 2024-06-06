@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/05 15:24:37 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:52:56 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@
 # include <X11/X.h>
 # include <stdbool.h>
 
-// # define WIDTH 1920
-// # define HEIGHT 1080
-
-# define WIDTH 920
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define ROTATE_SPEED 0.05
 
@@ -58,6 +55,7 @@
 # define BROWN			0x7a5631
 # define BLACK			0x000000
 # define WHITE			0xffffff
+# define GREEN			0x00ff00
 /*****************************************************************************/
 /*                                   DIR                                     */
 /*****************************************************************************/
@@ -155,6 +153,10 @@ typedef struct s_data
 	bool	rot_left;
 	bool	rot_right;
 }	t_data;
+
+
+void	recast(t_data *data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /*****************************************************************************/
 /*                                   ERROR                                   */
