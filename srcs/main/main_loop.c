@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:10 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/06 11:02:50 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:07:53 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_generate(t_data *data)
 	init_image(data->g->img, data);
 	mv_player(data);
 	// display_column(data->map, data);
-	recast(data);
+	recast2(data);
 	mlx_destroy_image(data->g->mlx, data->g->img->img);
 	return (0);
 }
@@ -110,6 +110,5 @@ int	main_loop(t_data *data, t_mlx *cub)
 	mlx_hook(cub->win, KeyRelease, KeyReleaseMask, key_release, data);
 	mlx_hook(cub->win, 17, 1L << 0, close_window, data->g);
 	mlx_loop(cub->mlx);
-	mlx_destroyer(cub);
 	return (0);
 }

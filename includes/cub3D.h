@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/06 13:41:56 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:50:31 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,25 @@ typedef	struct s_im
 	int		endian;
 }	t_im;
 
+typedef struct s_tex
+{
+	char	*file;
+	int		width;
+	int		height;
+	void	*img;
+	int		bits_per_pixel;
+	int		endian;
+	int		line_length;
+	char	*tex_addr;
+	uint32_t	*data;
+} t_tex;
+
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
 	t_im	*img;
+	
 }	t_mlx;
 
 typedef struct s_mm
@@ -147,6 +161,8 @@ typedef struct s_data
 	t_mlx	*g;
 	t_map	*map;
 	t_mm	*mm;
+	uint32_t **buf;
+	t_tex 	*tex;
 	bool	mv_up;
 	bool	mv_down;
 	bool	mv_left;
@@ -156,7 +172,7 @@ typedef struct s_data
 }	t_data;
 
 
-void	recast(t_data *data);
+void	recast2(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /*****************************************************************************/

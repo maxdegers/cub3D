@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:23:46 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 10:14:19 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:46:49 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,7 @@ void	ft_perror(void)
 	exit(EXIT_FAILURE);
 }
 
-void	free_all(t_data *data)
-{
-	if (data->map)
-		ft_free_map(data->map);
-}
+
 
 void	exit_error(char *message, t_data *data)
 {

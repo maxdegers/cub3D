@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   recast.c                                           :+:      :+:    :+:   */
+/*   recast2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:24:06 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/07 11:33:23 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:02:33 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include "cub3D.h"
 #include "calcul.h"
 
+#define TEX_WIDTH 64
+#define TEX_HEIGHT 64
 
-void	ft_drawLine(int x, int drawStart, int drawEnd, unsigned int color, t_data *data)
+void	ft_drawline(int x, int drawStart, int drawEnd, unsigned int color, t_data *data)
 {
 	int	i;
 
@@ -37,7 +39,44 @@ void	ft_drawLine(int x, int drawStart, int drawEnd, unsigned int color, t_data *
 	}	
 }
 
-void 	recast(t_data *data)
+void	draw_buffer(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT)
+		{
+			my_mlx_pixel_put(data, x, y, data->buf[x][y]);
+			y++;
+		}
+		x++;
+	}
+}
+
+void	clear_buf(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT)
+		{
+			data->buf[x][y] = 0;
+			y++;
+		}
+		x++;
+	}
+}
+
+
+void 	recast2(t_data *data)
 {
 	double posX, posY ;  //x and y start position
   	double dirX, dirY; //initial direction vector
@@ -128,20 +167,37 @@ void 	recast(t_data *data)
 		int lineHeight = (int)(h / perpWallDist);
 
 		//calculate lowest and highest pixel to fill in current stripe
-		int drawStart = -lineHeight / 2 + h / 2;
+		int drawStart = (-lineHeight * 0.5) + (h * 0.5);
 		if(drawStart < 0) drawStart = 0;
-		int drawEnd = lineHeight / 2 + h / 2;
+		int drawEnd = (lineHeight * 0.5) + (h * 0.5);
 		if(drawEnd >= h) drawEnd = h - 1;
 
-		//choose wall color
-		unsigned int color;
-		color = GREEN;
-		//give x and y sides different brightness
-		if(side == 1) {color = color / 2;}
-		//draw the pixels of the stripe as a vertical line
-		ft_drawLine(x, drawStart, drawEnd, color, data);
+
+		int	texNum = 0; //1 subtracted from it so that texture 0 can be used!
+		double wallX; //where exactly the wall was hit
+		if(side == 0) wallX = posY + perpWallDist * rayDirY;
+		else          wallX = posX + perpWallDist * rayDirX;
+		wallX -= floor((wallX));
+		//x coordinate on the texture
+		int	texX = (int)(wallX * (double)TEX_WIDTH);
+		if (side == 0 && rayDirX > 0) texX = TEX_WIDTH - texX - 1;
+		if (side == 1 && rayDirY < 0) texX = TEX_WIDTH - texX - 1;
+		double step = (double)TEX_HEIGHT / lineHeight;
+		double texPos = step * (drawStart - (h * 0.5) + (lineHeight * 0.5));
+		int y = drawStart;
+		uint32_t color;
+		while (y < drawEnd)
+		{
+			int texY = (int)texPos & (TEX_HEIGHT - 1);
+			texPos += step;
+			color = data->tex[texNum].data[TEX_WIDTH * texY + texX];
+			data->buf[x][y] = color;
+			y++;
+		}
 		x++;
 	}
+	draw_buffer(data);
+	clear_buf(data);
 	display_minimap(data->map, data);
 	mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->img->img, 0, 0);
 }
