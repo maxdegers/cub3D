@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:24:06 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/10 16:14:22 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:28:11 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void 	recast2(t_data *data)
 		if(drawEnd >= h) drawEnd = h - 1;
 
 
-		int	texNum = 1; //1 subtracted from it so that texture 0 can be used!
+		int	texNum = 3; //1 subtracted from it so that texture 0 can be used!
 		double wallX; //where exactly the wall was hit
 		if(side == 0) wallX = posY + perpWallDist * rayDirY;
 		else          wallX = posX + perpWallDist * rayDirX;
