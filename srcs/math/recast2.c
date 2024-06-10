@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:24:06 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/07 20:02:33 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:13:52 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void 	recast2(t_data *data)
 		if(drawEnd >= h) drawEnd = h - 1;
 
 
-		int	texNum = 0; //1 subtracted from it so that texture 0 can be used!
+		int	texNum = 3; //1 subtracted from it so that texture 0 can be used!
 		double wallX; //where exactly the wall was hit
 		if(side == 0) wallX = posY + perpWallDist * rayDirY;
 		else          wallX = posX + perpWallDist * rayDirX;
@@ -190,14 +190,12 @@ void 	recast2(t_data *data)
 		{
 			int texY = (int)texPos & (TEX_HEIGHT - 1);
 			texPos += step;
-			color = data->tex[texNum].data[TEX_WIDTH * texY + texX];
-			data->buf[x][y] = color;
+			color = data->tex[texNum].tex_addr[TEX_WIDTH * texY + texX];
+			my_mlx_pixel_put(data, x, y, color);
 			y++;
 		}
 		x++;
 	}
-	draw_buffer(data);
-	clear_buf(data);
 	display_minimap(data->map, data);
 	mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->img->img, 0, 0);
 }
