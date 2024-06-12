@@ -52,7 +52,9 @@ void	ft_put_player(t_data *data, int color)
 		j = 0;
 		while (j < data->mm->psize)
 		{
-			my_mlx_pixel_put(data, data->map->player->pos.y * data->mm->wsize + i, data->map->player->pos.x * data->mm->wsize + j, color);
+			my_mlx_pixel_put(data, data->map->player->pos.y
+				* data->mm->wsize + i, data->map->player->pos.x
+				* data->mm->wsize + j, color);
 			j++;
 		}
 		i++;
@@ -72,30 +74,23 @@ void	draw_minimap(char **map, t_data *data)
 		j = 0;
 		while (map[i][j])
 		{
+			x = (j * data->mm->wsize);
+			y = (i * data->mm->wsize);
 			if (map[i][j] == '1')
-			{
-				x = (j * data->mm->wsize);
-				y = (i * data->mm->wsize);
 				put_block(data, x, y, data->map->f.rgb);
-			}
 			if (map[i][j] == '0')
-			{
-				x = (j * data->mm->wsize);
-				y = (i * data->mm->wsize);
 				put_block(data, x, y, 0xA2B5B2);
-			}
 			j++;
 		}
 		i++;
 	}
 	ft_put_player(data, RED);
-	
 }
 
 void	display_minimap(t_map *map, t_data *data)
 {
 	t_mm	mm;
-	
+
 	data->mm = &mm;
 	(void)map;
 	if (data->map->zoom < 0)

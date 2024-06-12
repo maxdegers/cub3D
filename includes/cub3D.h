@@ -24,7 +24,8 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-# define ROTATE_SPEED 0.05
+# define MOVE_SPEED 0.075
+# define ROTATE_SPEED 0.035
 
 # define ERROR_MALLOC "Cub3D: Malloc failed\n"
 # define ERROR_ARG "Cub3D: Try : ./cube3D <map.cub>\n"
@@ -115,7 +116,7 @@ typedef struct s_map
 	int			zoom;
 }	t_map;
 
-typedef	struct s_im
+typedef struct s_im
 {
 	void	*img;
 	char	*addr;
@@ -126,23 +127,22 @@ typedef	struct s_im
 
 typedef struct s_tex
 {
-	char	*file;
-	int		width;
-	int		height;
-	void	*img;
-	int		bits_per_pixel;
-	int		endian;
-	int		line_length;
-	char	*tex_addr;
+	char		*file;
+	int			width;
+	int			height;
+	void		*img;
+	int			bits_per_pixel;
+	int			endian;
+	int			line_length;
+	char		*tex_addr;
 	uint32_t	*data;
-} t_tex;
+}	t_tex;
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
 	t_im	*img;
-	
 }	t_mlx;
 
 typedef struct s_mm
@@ -158,19 +158,18 @@ typedef struct s_mm
 
 typedef struct s_data
 {
-	t_mlx	*g;
-	t_map	*map;
-	t_mm	*mm;
-	uint32_t **buf;
-	t_tex 	*tex;
-	bool	mv_up;
-	bool	mv_down;
-	bool	mv_left;
-	bool	mv_right;
-	bool	rot_left;
-	bool	rot_right;
+	t_mlx		*g;
+	t_map		*map;
+	t_mm		*mm;
+	uint32_t	**buf;
+	t_tex		*tex;
+	bool		mv_up;
+	bool		mv_down;
+	bool		mv_left;
+	bool		mv_right;
+	bool		rot_left;
+	bool		rot_right;
 }	t_data;
-
 
 void	recast2(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -191,6 +190,10 @@ void	free_mlx(t_mlx *g);
 /*****************************************************************************/
 //	main_loop.c
 int		main_loop(t_data *data, t_mlx *cub);
+int		set_texture(t_data *data);
+void	set_player(t_data *data, t_player *player);
+int		key_press(int key, t_data *data);
+int		key_release(int key, t_data *data);
 /*****************************************************************************/
 /*                                  PARSING                                  */
 /*****************************************************************************/
@@ -207,7 +210,6 @@ int		check_path_type(char *path, char *type);
 void	ft_parse_line(char *line, t_data *data, char **lines);
 //	check_data.c
 int		check_data(t_data *data);
-int		is_map(char *line);
 // read_file.c
 char	*get_file(char *path);
 // parse_texture.c
@@ -226,7 +228,11 @@ int		ft_striscolor(char *str);
 // check_map_utils.c
 int		check_position(char **map, size_t i, size_t j);
 int		check_border(char **map, size_t i, size_t j);
-int		ft_check_if_is_player(t_data *data, size_t i, size_t j, int	b);
+int		ft_check_if_is_player(t_data *data, size_t i, size_t j, int b);
+
+//check_data_utils.c
+size_t	get_line_longest(char **map);
+int		is_map(char *line);
 
 /*****************************************************************************/
 /*                                 MINI_MAPS                                 */
@@ -244,7 +250,8 @@ void	ft_move_l(t_data *data);
 void	ft_move_r(t_data *data);
 void	ft_rotate_l(t_data *data);
 void	ft_rotate_r(t_data *data);
-
+void	ft_mouse_rotate_l(t_data *data, int x);
+void	ft_mouse_rotate_r(t_data *data, int x);
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/

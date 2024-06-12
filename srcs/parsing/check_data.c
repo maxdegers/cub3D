@@ -12,24 +12,6 @@
 
 #include "cub3D.h"
 
-int	is_map(char *line)
-{
-	size_t	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] != ' ' && line[i] != '1' && line[i] != '0' && line[i] != 'N'
-			&& line[i] != 'S' && line[i] != 'E'
-			&& line[i] != 'W')
-			return (1);
-		i++;
-	}
-	if (ft_strcmp(line, "") == 0)
-		return (1);
-	return (0);
-}
-
 static int	ft_check_map_borders(char **map)
 {
 	size_t	i;
@@ -85,24 +67,6 @@ static int	check_map(t_data *data)
 	return (0);
 }
 
-size_t	get_line_longest(char **map)
-{
-	size_t	i;
-	size_t	size;
-	size_t	max;
-
-	i = 0;
-	max = 0;
-	while (map[i])
-	{
-		size = ft_strlen(map[i]);
-		if (size > max)
-			max = size;
-		i++;
-	}
-	return (max);
-}
-
 char	*ft_set_new_line(char *line, int size)
 {
 	char	*new_line;
@@ -148,14 +112,8 @@ void	make_map_rect(t_data *data)
 
 int	check_data(t_data *data)
 {
-	if (data->map->no == NULL)
+	if (!data->map->no || !data->map->so || !data->map->we || !data->map->ea)
 		return (ft_puterror(ERROR_NO_PATH), 1);
-	if (data->map->so == NULL)
-		return (ft_puterror(ERROR_SO_PATH), 1);
-	if (data->map->we == NULL)
-		return (ft_puterror(ERROR_WE_PATH), 1);
-	if (data->map->ea == NULL)
-		return (ft_puterror(ERROR_EA_PATH), 1);
 	if (data->map->c.b == -1 || data->map->c.g == -1 || data->map->c.r == -1)
 		return (ft_puterror(ERROR_C_COLOR), 1);
 	if (data->map->f.b == -1 || data->map->f.g == -1 || data->map->f.r == -1)

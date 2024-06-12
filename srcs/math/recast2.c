@@ -17,26 +17,26 @@
 #define TEX_WIDTH 64
 #define TEX_HEIGHT 64
 
-void	ft_drawline(int x, int drawStart, int drawEnd, unsigned int color, t_data *data)
+void	ft_drawline(int x, int *draw, unsigned int color, t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < drawStart)
+	while (i < draw[0])
 	{
 		my_mlx_pixel_put(data, x, i, data->map->c.rgb);
 		i++;
 	}
-	while (drawStart < drawEnd)
+	while (draw[0] < draw[1])
 	{
-		my_mlx_pixel_put(data, x, drawStart, color);
-		drawStart++;
+		my_mlx_pixel_put(data, x, draw[0], color);
+		draw[0]++;
 	}
-	while (drawEnd < HEIGHT)
+	while (draw[1] < HEIGHT)
 	{
-		my_mlx_pixel_put(data, x, drawEnd, data->map->f.rgb);
-		drawEnd++;
-	}	
+		my_mlx_pixel_put(data, x, draw[1], data->map->f.rgb);
+		draw[1]++;
+	}
 }
 
 void	draw_buffer(t_data *data)
@@ -75,115 +75,88 @@ void	clear_buf(t_data *data)
 	}
 }
 
-
 void 	recast2(t_data *data)
 {
-	double posX, posY ;  //x and y start position
-  	double dirX, dirY; //initial direction vector
-  	double planeX, planeY; //the 2d raycaster version of camera plane
-
-	int	x = 0;
-	int w = WIDTH;
-	int h = HEIGHT;
-	char **worldMap = data->map->map;
-	posX = data->map->player->pos.x;
-	posY = data->map->player->pos.y;
-	dirX = data->map->player->dir.x;
-	dirY = data->map->player->dir.y;
-	planeX = data->map->player->plane.x;
-	planeY = data->map->player->plane.y;
-
-	while (x < w)
+	int		x;
+	t_ray	ray;
+	int		map_x;
+	int		map_y;
+	
+	x = 0;
+	while (x < WIDTH)
 	{
-		//calculate ray position and direction
-		double cameraX = 2 * x / (double)w - 1; //x-coordinate in camera space
-		double rayDirX = dirX + planeX * cameraX;
-		double rayDirY = dirY + planeY * cameraX;
-			//which box of the map we're in
-		int mapX = (int)posX;
-		int mapY = (int)posY;
+		ray.dir.x = data->map->player->dir.x
+			+ data->map->player->plane.x * (2 * x / (double)WIDTH - 1);
+		ray.dir.y = data->map->player->dir.y
+			+ data->map->player->plane.y * (2 * x / (double)WIDTH - 1);
+		map_x = (int)data->map->player->pos.x;
+		map_y = (int)data->map->player->pos.y;
 
-		//length of ray from current position to next x or y-side
-		double sideDistX;
-		double sideDistY;
-
-		//length of ray from one x or y-side to next x or y-side
-		double deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-		double deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
-		double perpWallDist;
-
-		//what direction to step in x or y-direction (either +1 or -1)
-		int stepX;
-		int stepY;
-
-		int hit = 0; //was there a wall hit?
-		int side; //was a NS or a EW wall hit?
-		//calculate step and initial sideDist
-		if(rayDirX < 0)
+		ray.hit = 0;
+		calc_delta_dist(&ray);
+		if (ray.dir.x < 0)
 		{
-			stepX = -1;
-			sideDistX = (posX - mapX) * deltaDistX;
+			ray.step.x = -1;
+			ray.side_dist.x = (data->map->player->pos.x - map_x) * ray.delta_dist.x;
 		}
 		else
 		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+			ray.step.x = 1;
+			ray.side_dist.x = (map_x + 1.0 - data->map->player->pos.x) * ray.delta_dist.x;
 		}
-		if(rayDirY < 0)
+		if (ray.dir.y < 0)
 		{
-			stepY = -1;
-			sideDistY = (posY - mapY) * deltaDistY;
+			ray.step.y = -1;
+			ray.side_dist.y = (data->map->player->pos.y - map_y) * ray.delta_dist.y;
 		}
 		else
 		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+			ray.step.y = 1;
+			ray.side_dist.y = (map_y + 1.0 - data->map->player->pos.y) * ray.delta_dist.y;
 		}
 			//perform DDA
-		while(hit == 0)
+		while(ray.hit == 0)
 		{
 			//jump to next map square, either in x-direction, or in y-direction
-			if(sideDistX < sideDistY)
+			if(ray.side_dist.x < ray.side_dist.y)
 			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
-				side = 0;
+				ray.side_dist.x += ray.delta_dist.x;
+				map_x += ray.step.x;
+				ray.side = 0;
 			}
 			else
 			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
-				side = 1;
+				ray.side_dist.y += ray.delta_dist.y;
+				map_y += ray.step.y;
+				ray.side = 1;
 			}
-			//Check if ray has hit a wall
-			if(worldMap[mapX][mapY] == '1')
-				hit = 1;
+			//Check if ray has ray.hit a wall
+			if(data->map->map[map_x][map_y] == '1')
+				ray.hit = 1;
 		}
-		if(side == 0)
-			perpWallDist = (sideDistX - deltaDistX);
+		if (ray.side == 0)
+			ray.perm_wall_dist = (ray.side_dist.x - ray.delta_dist.x);
 		else
-			perpWallDist = (sideDistY - deltaDistY);
+			ray.perm_wall_dist = (ray.side_dist.y - ray.delta_dist.y);
 		//Calculate height of line to draw on screen
-		int lineHeight = (int)(h / perpWallDist);
+		int lineHeight = (int)(HEIGHT / ray.perm_wall_dist);
 
 		//calculate lowest and highest pixel to fill in current stripe
-		int drawStart = (-lineHeight * 0.5) + (h * 0.5);
-		if(drawStart < 0) drawStart = 0;
-		int drawEnd = (lineHeight * 0.5) + (h * 0.5);
-		if(drawEnd >= h) drawEnd = h - 1;
-
-
+		int drawStart = (-lineHeight * 0.5) + (HEIGHT * 0.5);
+		if (drawStart < 0) drawStart = 0;
+		int drawEnd = (lineHeight * 0.5) + (HEIGHT * 0.5);
+		if (drawEnd >= HEIGHT) drawEnd = HEIGHT - 1;
 		int	texNum = 3; //1 subtracted from it so that texture 0 can be used!
-		double wallX; //where exactly the wall was hit
-		if(side == 0) wallX = posY + perpWallDist * rayDirY;
-		else          wallX = posX + perpWallDist * rayDirX;
+		double wallX; //where exactly the wall was ray.hit
+		if (ray.side == 0) wallX = data->map->player->pos.y + ray.perm_wall_dist * ray.dir.y;
+		else          wallX = data->map->player->pos.x + ray.perm_wall_dist * ray.dir.x;
 		wallX -= floor((wallX));
 		//x coordinate on the texture
 		int	texX = (int)(wallX * (double)TEX_WIDTH);
-		if (side == 0 && rayDirX > 0) texX = TEX_WIDTH - texX - 1;
-		if (side == 1 && rayDirY < 0) texX = TEX_WIDTH - texX - 1;
+		if (ray.side == 0 && ray.dir.x > 0) texX = TEX_WIDTH - texX - 1;
+		if (ray.side == 1 && ray.dir.y < 0) texX = TEX_WIDTH - texX - 1;
 		double step = (double)TEX_HEIGHT / lineHeight;
-		double texPos = step * (drawStart - (h * 0.5) + (lineHeight * 0.5));
+		double texPos = step * (drawStart - (HEIGHT * 0.5) + (lineHeight * 0.5));
 		int y = drawStart;
 		uint32_t color;
 		while (y < drawEnd)

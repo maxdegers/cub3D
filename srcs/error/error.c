@@ -23,8 +23,6 @@ void	ft_perror(void)
 	exit(EXIT_FAILURE);
 }
 
-
-
 void	exit_error(char *message, t_data *data)
 {
 	ft_puterror(message);

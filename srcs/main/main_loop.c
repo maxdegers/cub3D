@@ -49,6 +49,24 @@ void	init_image(t_im *img, t_data *data)
 	}
 }
 
+int	mouse_handler(t_data *data)
+{
+	int	x;
+	int	y;
+
+	mlx_mouse_get_pos(data->g->mlx, data->g->win, &x, &y);
+	if (x != WIDTH / 2)
+	{
+		if (x > (WIDTH / 2))
+			ft_mouse_rotate_r(data, x);
+		else if (x < (WIDTH / 2))
+			ft_mouse_rotate_l(data, x);
+		mlx_mouse_move(data->g->mlx, data->g->win, WIDTH / 2, HEIGHT / 2);
+	}
+	else if (y != HEIGHT / 2)
+		mlx_mouse_move(data->g->mlx, data->g->win, WIDTH / 2, HEIGHT / 2);
+	return (0);
+}
 
 int	ft_generate(t_data *data)
 {
@@ -56,50 +74,10 @@ int	ft_generate(t_data *data)
 
 	data->g->img = &img;
 	init_image(data->g->img, data);
+	mouse_handler(data);
 	mv_player(data);
-	// display_column(data->map, data);
 	recast2(data);
 	mlx_destroy_image(data->g->mlx, data->g->img->img);
-	return (0);
-}
-
-int	key_press(int key, t_data *data)
-{
-	if (key == 65307)
-		close_window(data->g);
-	else if (key == 'w')
-		data->mv_up = True;
-	else if (key == 's')
-		data->mv_down = True;
-	else if (key == 'a')
-		data->mv_left = True;
-	else if (key == 'd')
-		data->mv_right = True;
-	else if (key == 65361) // left
-		data->rot_left = True;
-	else if (key == 65363) // right
-		data->rot_right = True;
-	else if (key == 65451) // +
-		data->map->zoom += 1;
-	else if (key == 65453) // -
-		data->map->zoom -= 1;
-	return (0);
-}
-
-int	key_release(int key, t_data *data)
-{
-	if (key == 'w')
-		data->mv_up = False;
-	else if (key == 's')
-		data->mv_down = False;
-	else if (key == 'a')
-		data->mv_left = False;
-	else if (key == 'd')
-		data->mv_right = False;
-	else if (key == 65361) // left
-		data->rot_left = False;
-	else if (key == 65363) // right
-		data->rot_right = False;
 	return (0);
 }
 

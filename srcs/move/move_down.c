@@ -17,8 +17,10 @@ void	ft_move_d(t_data *data)
 	t_player	*player;
 
 	player = data->map->player;
-	if (data->map->map[(int)(player->pos.x - player->dir.x * player->mov_speed)][(int)player->pos.y] == '0')
+	if (data->map->map[(int)(player->pos.x
+			- player->dir.x * player->mov_speed)][(int)player->pos.y] == '0')
 		player->pos.x -= player->dir.x * player->mov_speed;
-	if (data->map->map[(int)player->pos.x][(int)(player->pos.y - player->dir.y * player->mov_speed)] == '0')
+	if (data->map->map[(int)player->pos.x][
+		(int)(player->pos.y - player->dir.y * player->mov_speed)] == '0')
 		player->pos.y -= player->dir.y * player->mov_speed;
 }
