@@ -20,8 +20,10 @@ SRCS	=	$(MAIN)		\
 
 DIR_MAIN	=	main/
 
-SRC_MAIN	=	main.c\
-				main_loop.c
+SRC_MAIN	=	main.c			\
+				main_loop.c		\
+				key_handler.c	\
+				set_struct.c
 
 MAIN	=	$(addprefix $(DIR_MAIN), $(SRC_MAIN))
 
@@ -34,22 +36,24 @@ ERROR	=	$(addprefix $(DIR_ERROR), $(SRC_ERROR))
 
 DIR_MATH	=	math/
 
-SRC_MATH	=	raycasting2.c\
-				recast2.c	 \
-				recast.c
+SRC_MATH	=	raycasting2.c	\
+				recast2.c	 	\
+				recast.c		\
+				calc_delta_dist.c
 
 MATH	=	$(addprefix $(DIR_MATH), $(SRC_MATH))
 
 DIR_PARSING	=	parsing/
 
-SRC_PARSING	=	parse_map.c	\
-				parse_line.c\
-				check_file.c\
-				check_data.c\
-				setup.c		\
-				read_file.c \
-				parse_texture.c
-				
+SRC_PARSING	=	parse_map.c		\
+				parse_line.c	\
+				check_file.c	\
+				check_data.c	\
+				setup.c			\
+				read_file.c 	\
+				parse_texture.c	\
+				check_data_utils.c
+
 
 PARSING	=	$(addprefix $(DIR_PARSING), $(SRC_PARSING))
 
