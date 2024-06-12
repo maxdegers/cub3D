@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:24:06 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/12 15:11:43 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:43:54 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,42 +36,6 @@ void	ft_drawline(int x, int *draw, unsigned int color, t_data *data)
 	{
 		my_mlx_pixel_put(data, x, draw[1], data->map->f.rgb);
 		draw[1]++;
-	}
-}
-
-void	draw_buffer(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			my_mlx_pixel_put(data, x, y, data->buf[x][y]);
-			y++;
-		}
-		x++;
-	}
-}
-
-void	clear_buf(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			data->buf[x][y] = 0;
-			y++;
-		}
-		x++;
 	}
 }
 
@@ -114,7 +78,6 @@ void 	recast2(t_data *data)
 			ray.step.y = 1;
 			ray.side_dist.y = (map_y + 1.0 - data->map->player->pos.y) * ray.delta_dist.y;
 		}
-		int side = -1;
 			//perform DDA
 		while(ray.hit == 0)
 		{
@@ -124,14 +87,12 @@ void 	recast2(t_data *data)
 				ray.side_dist.x += ray.delta_dist.x;
 				map_x += ray.step.x;
 				ray.side = 0;
-				side = NS;
 			}
 			else
 			{
 				ray.side_dist.y += ray.delta_dist.y;
 				map_y += ray.step.y;
 				ray.side = 1;
-				side = WE;
 			}
 			//Check if ray has ray.hit a wall
 			if(data->map->map[map_x][map_y] == '1')
@@ -151,7 +112,7 @@ void 	recast2(t_data *data)
 		if (drawEnd >= HEIGHT) drawEnd = HEIGHT - 1;
 		
 		int	texNum; //1 subtracted from it so that texture 0 can be used!
-		if (side == NS)
+		if (ray.side == 0)
 		{
 			if (ray.step.x > 0)
 				texNum = 0;

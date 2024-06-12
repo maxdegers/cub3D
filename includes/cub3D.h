@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/12 15:05:16 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:24:04 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ void	free_all(t_data *data);
 void	exit_error(char *message, t_data *data);
 //	free.c
 void	ft_free_map(t_map *map);
+void	free_parsing(t_data *data);
 void	free_mlx(t_mlx *g);
 /*****************************************************************************/
 /*                                   MAIN                                    */

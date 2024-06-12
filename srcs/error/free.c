@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:39:59 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/10 09:33:46 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:21:15 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,18 @@ void	free_tex(t_tex *tex, void *mlx)
 	free(tex);
 }
 
+void	free_parsing(t_data *data)
+{
+	if (data->map)
+		ft_free_map(data->map);
+}
+
 void	free_all(t_data *data)
 {
 	if (data->map)
 		ft_free_map(data->map);
-	// if (data->tex)
-	// 	free_tex(data->tex, data->g->mlx);
-	// if (data->buf)
-	// 	free_buf(data);
+	if (data->tex)
+		free_tex(data->tex, data->g->mlx);
 	if (data->g)
 		mlx_destroyer(data->g);
 }
