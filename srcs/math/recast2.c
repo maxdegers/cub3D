@@ -14,9 +14,6 @@
 #include "cub3D.h"
 #include "calcul.h"
 
-#define TEX_WIDTH 64
-#define TEX_HEIGHT 64
-
 void	ft_drawline(int x, int *draw, unsigned int color, t_data *data)
 {
 	int	i;
@@ -55,7 +52,6 @@ void 	recast2(t_data *data)
 			+ data->map->player->plane.y * (2 * x / (double)WIDTH - 1);
 		map_x = (int)data->map->player->pos.x;
 		map_y = (int)data->map->player->pos.y;
-
 		ray.hit = 0;
 		calc_delta_dist(&ray);
 		if (ray.dir.x < 0)

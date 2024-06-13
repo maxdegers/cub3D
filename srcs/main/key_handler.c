@@ -32,6 +32,10 @@ int	key_press(int key, t_data *data)
 		data->map->zoom += 1;
 	else if (key == 65453)
 		data->map->zoom -= 1;
+	else if (key == 'p' && !data->pause)
+		data->pause = True;
+	else if (key == 'p' && data->pause)
+		data->pause = False;
 	return (0);
 }
 

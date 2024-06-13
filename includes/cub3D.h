@@ -171,6 +171,7 @@ typedef struct s_data
 	bool		mv_right;
 	bool		rot_left;
 	bool		rot_right;
+	bool		pause;
 }	t_data;
 
 void	recast2(t_data *data);
