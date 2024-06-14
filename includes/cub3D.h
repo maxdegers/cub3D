@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/12 15:24:04 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:38:16 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ typedef struct s_map
 	t_vector	window;
 	char		**map;
 	int			zoom;
+	size_t		map_width;
+	size_t		map_height;
 }	t_map;
 
 typedef struct s_im
