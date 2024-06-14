@@ -37,6 +37,7 @@ ERROR	=	$(addprefix $(DIR_ERROR), $(SRC_ERROR))
 DIR_MATH	=	math/
 
 SRC_MATH	=	recast2.c	 	\
+				draw_wall.c		\
 				calc_delta_dist.c
 
 MATH	=	$(addprefix $(DIR_MATH), $(SRC_MATH))
