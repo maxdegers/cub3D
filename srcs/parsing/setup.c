@@ -42,6 +42,7 @@ void	setup_map(t_map *map)
 
 void	ft_setup_map(t_data *data)
 {
+	data->pause = False;
 	setup_map(data->map);
 }
 

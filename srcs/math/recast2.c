@@ -6,16 +6,13 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:24:06 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/10 16:28:11 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:43:54 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3D.h"
 #include "calcul.h"
-
-#define TEX_WIDTH 64
-#define TEX_HEIGHT 64
 
 void	ft_drawline(int x, int *draw, unsigned int color, t_data *data)
 {
@@ -39,42 +36,6 @@ void	ft_drawline(int x, int *draw, unsigned int color, t_data *data)
 	}
 }
 
-void	draw_buffer(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			my_mlx_pixel_put(data, x, y, data->buf[x][y]);
-			y++;
-		}
-		x++;
-	}
-}
-
-void	clear_buf(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			data->buf[x][y] = 0;
-			y++;
-		}
-		x++;
-	}
-}
-
 void 	recast2(t_data *data)
 {
 	int		x;
@@ -91,7 +52,6 @@ void 	recast2(t_data *data)
 			+ data->map->player->plane.y * (2 * x / (double)WIDTH - 1);
 		map_x = (int)data->map->player->pos.x;
 		map_y = (int)data->map->player->pos.y;
-
 		ray.hit = 0;
 		calc_delta_dist(&ray);
 		if (ray.dir.x < 0)
@@ -146,7 +106,22 @@ void 	recast2(t_data *data)
 		if (drawStart < 0) drawStart = 0;
 		int drawEnd = (lineHeight * 0.5) + (HEIGHT * 0.5);
 		if (drawEnd >= HEIGHT) drawEnd = HEIGHT - 1;
-		int	texNum = 3; //1 subtracted from it so that texture 0 can be used!
+		
+		int	texNum; //1 subtracted from it so that texture 0 can be used!
+		if (ray.side == 0)
+		{
+			if (ray.step.x > 0)
+				texNum = 0;
+			else
+				texNum = 1;
+		}
+		else
+		{
+			if (ray.step.y > 0)
+				texNum = 2;
+			else
+				texNum = 3;
+		}
 		double wallX; //where exactly the wall was ray.hit
 		if (ray.side == 0) wallX = data->map->player->pos.y + ray.perm_wall_dist * ray.dir.y;
 		else          wallX = data->map->player->pos.x + ray.perm_wall_dist * ray.dir.x;
@@ -159,12 +134,23 @@ void 	recast2(t_data *data)
 		double texPos = step * (drawStart - (HEIGHT * 0.5) + (lineHeight * 0.5));
 		int y = drawStart;
 		uint32_t color;
+		int i = 0;
+		while (i < y)
+		{
+			my_mlx_pixel_put(data, x, i, data->map->c.rgb);
+			i++;
+		}
 		while (y < drawEnd)
 		{
 			int texY = (int)texPos & (TEX_HEIGHT - 1);
 			texPos += step;
 			color = data->tex[texNum].data[TEX_WIDTH * texY + texX];
 			my_mlx_pixel_put(data, x, y, color);
+			y++;
+		}
+		while (y < HEIGHT)
+		{
+			my_mlx_pixel_put(data, x, y, data->map->f.rgb);
 			y++;
 		}
 		x++;

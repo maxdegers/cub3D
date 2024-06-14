@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:17:42 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/10 14:54:59 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:38:16 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@
 # define EAST 4
 # define FLOOR 5
 # define CEILING 6
+# define NS 1
+# define WE 0
 /*****************************************************************************/
 /*                                   ENUM                                    */
 /*****************************************************************************/
@@ -114,6 +116,8 @@ typedef struct s_map
 	t_vector	window;
 	char		**map;
 	int			zoom;
+	size_t		map_width;
+	size_t		map_height;
 }	t_map;
 
 typedef struct s_im
@@ -169,6 +173,7 @@ typedef struct s_data
 	bool		mv_right;
 	bool		rot_left;
 	bool		rot_right;
+	bool		pause;
 }	t_data;
 
 void	recast2(t_data *data);
@@ -184,6 +189,7 @@ void	free_all(t_data *data);
 void	exit_error(char *message, t_data *data);
 //	free.c
 void	ft_free_map(t_map *map);
+void	free_parsing(t_data *data);
 void	free_mlx(t_mlx *g);
 /*****************************************************************************/
 /*                                   MAIN                                    */

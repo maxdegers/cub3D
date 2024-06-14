@@ -54,6 +54,9 @@ int	mouse_handler(t_data *data)
 	int	x;
 	int	y;
 
+	if (data->pause)
+		return (mlx_mouse_show(data->g->mlx, data->g->win), 0);
+	mlx_mouse_hide(data->g->mlx, data->g->win);
 	mlx_mouse_get_pos(data->g->mlx, data->g->win, &x, &y);
 	if (x != WIDTH / 2)
 	{

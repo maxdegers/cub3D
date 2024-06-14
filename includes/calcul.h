@@ -13,6 +13,8 @@
 #ifndef CALCUL_H
 # define CALCUL_H
 # include "cub3D.h"
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
 typedef struct s_vector_i
 {

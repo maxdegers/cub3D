@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:35:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/06 14:35:56 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:38:51 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	make_map_rect(t_data *data)
 
 	i = 0;
 	size = get_line_longest(data->map->map);
+	data->map->map_width = size;
+	data->map->map_height = ft_tablen(data->map->map);
 	while (data->map->map[i])
 	{
 		if (ft_strlen(data->map->map[i]) < size)
