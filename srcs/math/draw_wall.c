@@ -63,7 +63,7 @@ int	calc_tex_x(t_data *data, t_ray *ray)
 void	draw_line(t_data *data, t_ray *ray, int *tex, int *draw)
 {
 	double		step;
-	double		texPos;
+	double		tex_pos;
 	int			y;
 	uint32_t	color;
 	int			i;
@@ -71,13 +71,13 @@ void	draw_line(t_data *data, t_ray *ray, int *tex, int *draw)
 	y = draw[0];
 	i = 0;
 	step = (double)TEX_HEIGHT / ray->line_height;
-	texPos = step * (draw[0] - (HEIGHT * 0.5) + (ray->line_height * 0.5));
+	tex_pos = step * (draw[0] - (HEIGHT * 0.5) + (ray->line_height * 0.5));
 	while (i < y)
 		my_mlx_pixel_put(data, draw[2], i++, data->map->c.rgb);
 	while (y < draw[1])
 	{
-		tex[2] = (int)texPos & (TEX_HEIGHT - 1);
-		texPos += step;
+		tex[2] = (int)tex_pos & (TEX_HEIGHT - 1);
+		tex_pos += step;
 		color = data->tex[tex[0]].data[TEX_WIDTH * tex[2] + tex[1]];
 		my_mlx_pixel_put(data, draw[2], y, color);
 		y++;
@@ -88,8 +88,8 @@ void	draw_line(t_data *data, t_ray *ray, int *tex, int *draw)
 
 void	draw_wall(t_data *data, t_ray *ray, int x)
 {
-	int draw[3];
-	int tex[3];
+	int	draw[3];
+	int	tex[3];
 
 	calc_where_draw(draw, ray);
 	draw[2] = x;
