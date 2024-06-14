@@ -1,7 +1,7 @@
-NO ./assets/textures/xpm/wall_1.xpm
-SO ./assets/textures/xpm/wall_2.xpm
-WE ./assets/textures/xpm/wall_3.xpm
-EA ./assets/textures/xpm/wall_4.xpm
+NO ./assets/textures/xpm/lookingDownPasteque.xpm
+SO ./assets/textures/xpm/lookingHighPasteque.xpm
+WE ./assets/textures/xpm/pastequeWall.xpm
+EA ./assets/textures/xpm/watermelonOtherSIde.xpm
 
 F 0,0,0
 C 255,10,50

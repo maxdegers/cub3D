@@ -38,4 +38,5 @@ typedef struct s_ray
 
 void	display_column(t_map *map, t_data *data);
 void	calc_delta_dist(t_ray *ray);
+void	draw_wall(t_data *data, t_ray *ray, int x);
 #endif
