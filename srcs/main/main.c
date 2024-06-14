@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:16:54 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/12 15:24:53 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:18:09 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		return (ft_puterror(ERROR_ARG), 1);
 	data.map = &map;
-	data.g = &mlx;
 	data.map->player = &player;
 	if (parse_map(argv[1], &data) == 1)
 		return (free_parsing(&data), EXIT_FAILURE);
 	set_player(&data, &player);
+	data.g = &mlx;
 	ft_init_mlx(&data);
 	main_loop(&data, &mlx);
 	free_all(&data);

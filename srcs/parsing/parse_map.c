@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:48:34 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/06/05 15:01:51 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:17:52 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	ft_parse_file(char *path, t_data *data)
 
 int	parse_map(char *path, t_data *data)
 {
+	data->tex = NULL;
+	data->g = NULL;
 	ft_setup_map(data);
 	if (ft_check_file(path, data) == 1)
 		return (1);
