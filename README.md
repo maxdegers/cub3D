@@ -73,14 +73,6 @@ make all
 ```
 Replace `your_map.cub` with the path to your custom map file. The map file defines the layout of the 3D environment, including the textures, sprite positions, and player starting position.
 
-**2. Special Compiling Rules**
-
-To compile the program with valgrind, run:
-
-```shell
-$ make leak
-```
-
 ## Controls
 
 - `↑` or 'w' : Move forward.
@@ -90,6 +82,8 @@ $ make leak
 - `←` : Look left.
 - `→` : Look right.
 - `esc` : close program.
+- `+` and `-` : Zoom
+- `p` : Unlock mouse
 
 ## Resources
 
