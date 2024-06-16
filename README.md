@@ -1,6 +1,6 @@
 # Cube3D Project
 
-![Cube3D Screenshot (ADD PHOTO)]()
+![Cube3D Screenshot (https://imgur.com/WOr2YWP)]
 
 **Welcome to the Cube3D Project, a venture into creating 3D game environments with raycasting technology, reminiscent of classic first-person shooters.**
 
